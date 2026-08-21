@@ -2,262 +2,1516 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#faf8f3">
 <title>وَزن</title>
-<meta name="theme-color" content="#6f472f">
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#f6f0e8;color:#3d291e;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif}
-header{background:linear-gradient(135deg,#5b3a29,#8a5a3b);color:#fff;text-align:center;padding:28px 18px;border-radius:0 0 28px 28px}
-.logo{font-size:42px;font-weight:800}
-.subtitle{font-size:14px;opacity:.9;margin-top:5px}
-.container{max-width:650px;margin:auto;padding:18px}
-.tabs{display:flex;gap:8px;margin-bottom:15px}
-.tabs button{flex:1;border:0;border-radius:14px;padding:13px;background:#eadbcb;color:#4e3223;font-weight:700}
-.tabs button.active{background:#6f472f;color:#fff}
-.card{background:#fffdf9;border-radius:22px;padding:20px;box-shadow:0 5px 20px rgba(70,45,30,.08)}
-h2{margin-top:0}
-label{display:block;font-weight:700;margin:15px 0 7px}
-input,select{width:100%;padding:14px;border:1px solid #dfd2c4;border-radius:14px;background:#fff;color:#3d291e;font-size:16px}
-button.primary{width:100%;border:0;border-radius:15px;padding:15px;background:#6f472f;color:#fff;font-size:16px;font-weight:800;margin-top:18px}
-.result{background:#f1e4d7;border-radius:18px;padding:17px;margin-top:18px}
-.hidden{display:none}
-.big{font-size:28px;font-weight:800}
-.small{font-size:13px;color:#806b5b}
-.pour{background:#fff;border:1px solid #eadbcb;border-radius:15px;padding:15px;margin-top:10px}
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap');
+
+:root{
+  --bg:#faf8f3;
+  --card:#fffdf9;
+  --cream:#f3eee4;
+  --line:#dfd7ca;
+  --brown:#4b3028;
+  --text:#49332c;
+  --muted:#76665d;
+  --accent:#c98b5b;
+  --accent-dark:#a86d43;
+  --white:#fff;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Tajawal",sans-serif;
+  min-height:100vh;
+}
+
+.app{
+  width:100%;
+  max-width:700px;
+  margin:auto;
+  padding:18px 18px 125px;
+}
+
+/* HEADER */
+.header{
+  text-align:center;
+  padding:18px 0 22px;
+}
+
+.version{
+  text-align:left;
+  direction:ltr;
+  font-size:14px;
+  margin-bottom:4px;
+}
+
+.logo{
+  font-family:"Amiri",serif;
+  font-size:48px;
+  font-weight:700;
+  line-height:1;
+}
+
+.tagline{
+  font-family:"Amiri",serif;
+  font-size:21px;
+  color:#72564a;
+  margin-top:5px;
+}
+
+/* TOP MODE */
+.mode{
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:50px;
+  padding:7px;
+  display:flex;
+  gap:5px;
+  margin-bottom:24px;
+}
+
+.mode button{
+  flex:1;
+  border:0;
+  background:transparent;
+  color:var(--brown);
+  padding:16px 10px;
+  border-radius:42px;
+  font-family:inherit;
+  font-size:19px;
+  font-weight:700;
+}
+
+.mode button.active{
+  background:var(--accent);
+  color:white;
+  box-shadow:0 3px 10px rgba(120,80,50,.12);
+}
+
+/* CARDS */
+.card{
+  background:rgba(255,253,249,.95);
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:24px;
+  margin-bottom:18px;
+}
+
+.card-title{
+  font-size:20px;
+  font-weight:800;
+  margin-bottom:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+/* COFFEE AMOUNT */
+.amount-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.amount-label{
+  font-size:19px;
+  font-weight:800;
+}
+
+.amount-value{
+  font-size:39px;
+  font-weight:800;
+  direction:ltr;
+}
+
+.amount-value small{
+  font-size:17px;
+  margin-right:5px;
+}
+
+/* PLUS MINUS */
+.amount-controls{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.round-btn{
+  width:62px;
+  height:62px;
+  border:0;
+  border-radius:50%;
+  background:#f3eee4;
+  color:var(--brown);
+  font-size:30px;
+  font-weight:500;
+}
+
+.slider-wrap{
+  flex:1;
+}
+
+input[type="range"]{
+  width:100%;
+  height:7px;
+  appearance:none;
+  -webkit-appearance:none;
+  background:linear-gradient(
+    to left,
+    var(--accent) 0%,
+    var(--accent) var(--progress,50%),
+    #ddd9d3 var(--progress,50%),
+    #ddd9d3 100%
+  );
+  border-radius:20px;
+  direction:rtl;
+}
+
+input[type="range"]::-webkit-slider-thumb{
+  appearance:none;
+  -webkit-appearance:none;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:var(--bg);
+  border:5px solid var(--accent);
+  box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+input[type="range"]::-moz-range-thumb{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:var(--bg);
+  border:5px solid var(--accent);
+}
+
+/* STRENGTH */
+.strength-labels{
+  display:flex;
+  justify-content:space-between;
+  margin-top:18px;
+  font-size:16px;
+}
+
+.strength-center{
+  font-size:18px;
+  font-weight:800;
+}
+
+/* POUR COUNT */
+.pour-count{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.pour-count button{
+  border:0;
+  background:var(--cream);
+  border-radius:17px;
+  padding:17px 5px;
+  font-size:20px;
+  font-weight:800;
+  color:var(--brown);
+}
+
+.pour-count button.active{
+  background:var(--accent);
+  color:#fff;
+}
+
+/* ROAST */
+.roast-buttons{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.roast-buttons button{
+  border:1px solid var(--line);
+  background:var(--cream);
+  border-radius:16px;
+  padding:14px 5px;
+  font-family:inherit;
+  color:var(--brown);
+  font-weight:700;
+}
+
+.roast-buttons button.active{
+  background:var(--accent);
+  color:#fff;
+  border-color:var(--accent);
+}
+
+/* CALCULATE */
+.calculate{
+  width:100%;
+  border:0;
+  background:var(--brown);
+  color:#fff;
+  border-radius:20px;
+  padding:17px;
+  font-family:inherit;
+  font-size:18px;
+  font-weight:800;
+  margin-top:18px;
+}
+
+/* RESULT */
+.result{
+  display:none;
+}
+
+.result.show{
+  display:block;
+}
+
+.water-card{
+  background:var(--brown);
+  color:#fff;
+  border-radius:0 0 28px 28px;
+  margin:-24px -24px 20px;
+  padding:24px;
+  display:flex;
+  justify-content:space-around;
+  text-align:center;
+}
+
+.water-number{
+  font-size:29px;
+  font-weight:800;
+  direction:ltr;
+}
+
+.water-label{
+  opacity:.9;
+  margin-bottom:4px;
+}
+
+/* INFO */
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.info-box{
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:17px 8px;
+  text-align:center;
+  background:#fffdfa;
+}
+
+.info-icon{
+  font-size:22px;
+  margin-bottom:5px;
+}
+
+.info-label{
+  font-size:14px;
+}
+
+.info-value{
+  font-size:23px;
+  font-weight:800;
+  margin-top:6px;
+}
+
+/* POURS */
+.pours-card{
+  background:#f3eee4;
+  border:1px solid var(--line);
+  border-radius:27px;
+  padding:20px;
+}
+
+.pours-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:14px;
+}
+
+.pours-title{
+  font-size:23px;
+  font-weight:800;
+}
+
+.pours-sub{
+  font-size:14px;
+}
+
+.pour-item{
+  background:#fffdf9;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:16px;
+  margin-top:10px;
+  display:grid;
+  grid-template-columns:40px 1fr auto;
+  align-items:center;
+  gap:8px;
+  transition:.2s;
+}
+
+.pour-item.next{
+  border:2px solid var(--accent);
+  box-shadow:0 4px 15px rgba(180,120,70,.12);
+}
+
+.pour-number{
+  font-size:24px;
+  font-weight:800;
+  color:var(--accent-dark);
+}
+
+.pour-time{
+  font-size:14px;
+  margin-bottom:4px;
+}
+
+.pour-target{
+  font-size:23px;
+  font-weight:800;
+}
+
+.pour-status{
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* TIMER */
+.timer-box{
+  text-align:center;
+  padding:24px 10px 5px;
+}
+
+.timer{
+  font-size:52px;
+  font-weight:800;
+  direction:ltr;
+  letter-spacing:1px;
+}
+
+.timer-message{
+  min-height:28px;
+  font-weight:700;
+  color:var(--accent-dark);
+  margin:7px 0 15px;
+}
+
+.timer-buttons{
+  display:flex;
+  gap:10px;
+}
+
+.timer-btn{
+  flex:1;
+  border:0;
+  border-radius:20px;
+  padding:17px 10px;
+  font-family:inherit;
+  font-size:17px;
+  font-weight:800;
+}
+
+.start{
+  background:var(--accent);
+  color:#fff;
+}
+
+.reset{
+  background:#eee8de;
+  color:var(--brown);
+}
+
+.save{
+  background:transparent;
+  border:1px solid var(--line);
+  color:var(--brown);
+}
+
+/* COLD INFO */
+.cold-note{
+  background:#f1e4d8;
+  border-radius:18px;
+  padding:14px;
+  margin-bottom:15px;
+  text-align:center;
+  font-size:14px;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+  position:fixed;
+  z-index:50;
+  bottom:12px;
+  left:50%;
+  transform:translateX(-50%);
+  width:calc(100% - 28px);
+  max-width:650px;
+  background:rgba(255,253,249,.94);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1px solid var(--line);
+  border-radius:35px;
+  box-shadow:0 8px 30px rgba(60,40,25,.12);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  padding:8px 5px;
+}
+
+.nav-btn{
+  border:0;
+  background:transparent;
+  color:#594840;
+  font-family:inherit;
+  padding:8px 2px;
+  border-radius:25px;
+  font-size:12px;
+}
+
+.nav-icon{
+  display:block;
+  font-size:23px;
+  margin-bottom:2px;
+}
+
+.nav-btn.active{
+  color:var(--accent-dark);
+  font-weight:800;
+}
+
+/* OTHER PAGES */
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.simple-title{
+  font-family:"Amiri",serif;
+  font-size:34px;
+  margin:10px 0 20px;
+}
+
+.crop{
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:#fffdf9;
+  padding:18px;
+  margin-bottom:12px;
+}
+
+.crop strong{
+  font-size:19px;
+}
+
+.empty{
+  text-align:center;
+  padding:45px 15px;
+  color:var(--muted);
+}
+
+/* RESPONSIVE */
+@media(max-width:430px){
+  .app{
+    padding-left:15px;
+    padding-right:15px;
+  }
+
+  .card{
+    padding:20px;
+  }
+
+  .water-card{
+    margin:-20px -20px 18px;
+  }
+
+  .logo{
+    font-size:45px;
+  }
+
+  .tagline{
+    font-size:19px;
+  }
+
+  .round-btn{
+    width:55px;
+    height:55px;
+  }
+
+  .timer{
+    font-size:47px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<header>
-<div class="logo">وَزن</div>
-<div class="subtitle">اضبط قهوتك بالمقدار الصح ☕</div>
+<div class="app">
+
+<header class="header">
+  <div class="version">v1.0</div>
+  <div class="logo">وَزن</div>
+  <div class="tagline">☕ اضبط قهوتك بالمقدار الصح</div>
 </header>
 
-<div class="container">
+<!-- V60 -->
+<div id="v60Page" class="page active">
 
-<div class="tabs">
-<button class="active" onclick="page('v60',this)">V60</button>
-<button onclick="page('espresso',this)">Espresso</button>
-<button onclick="page('crops',this)">المحاصيل</button>
+  <div class="mode">
+    <button id="coldBtn" class="active" onclick="setMode('cold')">بارد ❄️</button>
+    <button id="hotBtn" onclick="setMode('hot')">حار ♨️</button>
+  </div>
+
+  <div class="card">
+
+    <div class="amount-row">
+      <div class="amount-label">كمية البن</div>
+      <div class="amount-value">
+        <span id="coffeeValue">20</span>
+        <small>جرام</small>
+      </div>
+    </div>
+
+    <div class="amount-controls">
+      <button class="round-btn" onclick="changeCoffee(-1)">+</button>
+
+      <div class="slider-wrap">
+        <input id="coffeeSlider"
+               type="range"
+               min="10"
+               max="40"
+               value="20"
+               oninput="updateCoffee(this.value)">
+      </div>
+
+      <button class="round-btn" onclick="changeCoffee(1)">−</button>
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="card-title">
+      <span>قوة القهوة</span>
+      <span id="strengthWord" style="color:var(--accent-dark)">متوازنة</span>
+    </div>
+
+    <input id="strengthSlider"
+           type="range"
+           min="12"
+           max="18"
+           step="0.5"
+           value="15"
+           oninput="updateStrength(this.value)">
+
+    <div class="strength-labels">
+      <span>أخف</span>
+      <span class="strength-center" id="strengthValue">15</span>
+      <span>أثقل</span>
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="card-title">عدد الصبات</div>
+
+    <div class="pour-count">
+      <button onclick="setPours(5)">5</button>
+      <button onclick="setPours(4)">4</button>
+      <button class="active" onclick="setPours(3)">3</button>
+      <button onclick="setPours(2)">2</button>
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="card-title">درجة التحميص</div>
+
+    <div class="roast-buttons">
+      <button onclick="setRoast('light',this)">فاتح</button>
+      <button class="active" onclick="setRoast('medium',this)">متوسط</button>
+      <button onclick="setRoast('dark',this)">غامق</button>
+    </div>
+
+  </div>
+
+  <button class="calculate" onclick="calculateRecipe()">
+    احسب الوصفة ☕
+  </button>
+
+  <div id="result" class="result">
+
+    <div class="card">
+
+      <div class="water-card">
+        <div>
+          <div class="water-label">ماء ساخن</div>
+          <div class="water-number" id="hotWater">150g</div>
+        </div>
+
+        <div id="iceBlock">
+          <div class="water-label">ثلج</div>
+          <div class="water-number" id="iceWater">150g</div>
+        </div>
+      </div>
+
+      <div class="info-grid">
+
+        <div class="info-box">
+          <div class="info-icon">🌡️</div>
+          <div class="info-label">الحرارة</div>
+          <div class="info-value" id="temperature">90°</div>
+        </div>
+
+        <div class="info-box">
+          <div class="info-icon">☕</div>
+          <div class="info-label">الطحن</div>
+          <div class="info-value" id="grind">متوسط</div>
+        </div>
+
+        <div class="info-box">
+          <div class="info-icon">⏱️</div>
+          <div class="info-label">الوقت</div>
+          <div class="info-value" id="targetTime">2:00</div>
+        </div>
+
+      </div>
+
+      <div class="pours-card">
+
+        <div class="pours-head">
+          <div class="pours-title">الصبات</div>
+          <div class="pours-sub">الوزن التراكمي على الميزان</div>
+        </div>
+
+        <div id="poursList"></div>
+
+        <div class="timer-box">
+
+          <div class="timer" id="timer">0:00</div>
+
+          <div class="timer-message" id="timerMessage">
+            جاهز للبدء
+          </div>
+
+          <div class="timer-buttons">
+
+            <button class="timer-btn start" id="startBtn" onclick="toggleTimer()">
+              ▶ بدء المؤقت
+            </button>
+
+            <button class="timer-btn reset" onclick="resetTimer()">
+              ↻ إعادة
+            </button>
+
+          </div>
+
+          <button class="timer-btn save" style="width:100%;margin-top:10px" onclick="saveRecipe()">
+            ♡ حفظ الوصفة
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
 
-<section id="v60" class="card">
+<!-- ESPRESSO -->
+<div id="espressoPage" class="page">
 
-<h2>V60 ☕</h2>
+  <div class="simple-title">إسبريسو 🔥</div>
 
-<label>طريقة التحضير</label>
-<select id="type">
-<option value="hot">حار 🔥</option>
-<option value="cold">بارد 🧊</option>
-</select>
+  <div class="card">
 
-<label>وزن البن</label>
-<input id="coffee" type="number" value="20" min="1">
+    <div class="amount-row">
+      <div class="amount-label">كمية البن</div>
+      <div class="amount-value">
+        <span id="espressoCoffeeValue">18</span>
+        <small>جرام</small>
+      </div>
+    </div>
 
-<label>قوة القهوة</label>
-<input id="strength" type="number" value="15" min="10" max="20">
-<div class="small">
-15 = متوازن · رقم أقل = أثقل · رقم أعلى = أخف
-</div>
+    <input id="espressoSlider"
+           type="range"
+           min="7"
+           max="25"
+           value="18"
+           oninput="document.getElementById('espressoCoffeeValue').textContent=this.value">
 
-<label>عدد الصبات</label>
-<select id="count">
-<option value="2">2 صبات</option>
-<option value="3" selected>3 صبات</option>
-<option value="4">4 صبات</option>
-<option value="5">5 صبات</option>
-</select>
+    <button class="calculate" onclick="calculateEspresso()">
+      احسب الإسبريسو
+    </button>
 
-<label>درجة التحميص</label>
-<select id="roast">
-<option>فاتح</option>
-<option selected>متوسط</option>
-<option>غامق</option>
-</select>
+    <div id="espressoResult" class="cold-note" style="display:none;margin-top:18px"></div>
 
-<button class="primary" onclick="calculate()">احسب وصفتي</button>
-
-<div id="result" class="result hidden"></div>
-
-</section>
-
-<section id="espresso" class="card hidden">
-
-<h2>Espresso ☕</h2>
-
-<label>وزن البن</label>
-<input id="espressoCoffee" type="number" value="18">
-
-<label>القوة</label>
-<select id="espressoStrength">
-<option value="1.5">أثقل</option>
-<option value="2" selected>متوازن</option>
-<option value="2.5">أخف</option>
-</select>
-
-<button class="primary" onclick="espresso()">احسب</button>
-
-<div id="espressoResult" class="result hidden"></div>
-
-</section>
-
-<section id="crops" class="card hidden">
-
-<h2>المحاصيل 🌱</h2>
-
-<div class="result">
-<strong>🇾🇪 اليمن</strong>
-<p>نكهات مميزة ومعقدة، وقد تظهر فيها الفاكهية والتوابل والحلاوة حسب المحصول والمعالجة.</p>
-</div>
-
-<div class="result">
-<strong>🇨🇴 كولومبيا</strong>
-<p>متوازنة وحلوة، وتناسب خيارات كثيرة من طرق التحضير.</p>
-</div>
-
-<div class="result">
-<strong>🇪🇹 إثيوبيا</strong>
-<p>غالبًا عطرية وفاكهية وحموضتها أوضح.</p>
-</div>
-
-<div class="result">
-<strong>🇧🇷 البرازيل</strong>
-<p>غالبًا قوام أعلى ونكهات شوكولاتية ومكسرات.</p>
-</div>
-
-</section>
+  </div>
 
 </div>
+
+<!-- CROPS -->
+<div id="cropsPage" class="page">
+
+  <div class="simple-title">المحاصيل 🌐</div>
+
+  <div class="crop">
+    <strong>🇾🇪 اليمن</strong>
+    <p>نكهات معقدة، فاكهية وتوابل وحلاوة حسب المحصول والمعالجة.</p>
+  </div>
+
+  <div class="crop">
+    <strong>🇨🇴 كولومبيا</strong>
+    <p>متوازنة وحلوة ومناسبة لطرق تحضير متعددة.</p>
+  </div>
+
+  <div class="crop">
+    <strong>🇪🇹 إثيوبيا</strong>
+    <p>عطرية وفاكهية وغالبًا بحموضة واضحة.</p>
+  </div>
+
+  <div class="crop">
+    <strong>🇧🇷 البرازيل</strong>
+    <p>قوام أعلى ونكهات شوكولاتية ومكسرات غالبًا.</p>
+  </div>
+
+  <div class="crop">
+    <strong>🇰🇪 كينيا</strong>
+    <p>فاكهية واضحة وحموضة مشرقة وقوام مميز.</p>
+  </div>
+
+  <div class="crop">
+    <strong>🇨🇷 كوستاريكا</strong>
+    <p>حلاوة ونظافة مع نكهات فاكهية وحمضية.</p>
+  </div>
+
+</div>
+
+<!-- TASTE -->
+<div id="tastePage" class="page">
+
+  <div class="simple-title">ذوقي ♡</div>
+
+  <div class="card">
+
+    <div class="card-title">وش تحب في قهوتك؟</div>
+
+    <div class="roast-buttons" style="grid-template-columns:1fr 1fr">
+      <button onclick="taste('ثقيلة')">قهوة ثقيلة</button>
+      <button onclick="taste('خفيفة')">قهوة خفيفة</button>
+      <button onclick="taste('حلوة')">حلوة</button>
+      <button onclick="taste('فاكهية')">فاكهية</button>
+    </div>
+
+    <div id="tasteResult" class="cold-note" style="display:none;margin-top:18px"></div>
+
+  </div>
+
+</div>
+
+<!-- RECIPES -->
+<div id="recipesPage" class="page">
+
+  <div class="simple-title">وصفاتي 🔖</div>
+
+  <div id="savedRecipes" class="empty">
+    ما عندك وصفات محفوظة حاليًا ☕
+  </div>
+
+</div>
+
+</div>
+
+<!-- NAV -->
+<nav class="bottom-nav">
+
+  <button class="nav-btn active" onclick="showPage('v60Page',this)">
+    <span class="nav-icon">☕</span>
+    V60
+  </button>
+
+  <button class="nav-btn" onclick="showPage('espressoPage',this)">
+    <span class="nav-icon">♨️</span>
+    إسبريسو
+  </button>
+
+  <button class="nav-btn" onclick="showPage('cropsPage',this)">
+    <span class="nav-icon">🌐</span>
+    المحاصيل
+  </button>
+
+  <button class="nav-btn" onclick="showPage('tastePage',this)">
+    <span class="nav-icon">♡</span>
+    ذوقي
+  </button>
+
+  <button class="nav-btn" onclick="showPage('recipesPage',this)">
+    <span class="nav-icon">🔖</span>
+    وصفاتي
+  </button>
+
+</nav>
 
 <script>
 
-function page(id,button){
-document.querySelectorAll(".container>section").forEach(x=>x.classList.add("hidden"));
-document.getElementById(id).classList.remove("hidden");
-document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));
-button.classList.add("active");
+let mode = "cold";
+let coffee = 20;
+let strength = 15;
+let pours = 3;
+let roast = "medium";
+
+let timerInterval = null;
+let timerSeconds = 0;
+let timerRunning = false;
+let pourSchedule = [];
+let currentPour = 0;
+let audioContext = null;
+
+
+/* MODE */
+
+function setMode(value){
+
+  mode = value;
+
+  document.getElementById("coldBtn").classList.toggle("active",value==="cold");
+  document.getElementById("hotBtn").classList.toggle("active",value==="hot");
+
+  if(document.getElementById("result").classList.contains("show")){
+    calculateRecipe();
+  }
 }
 
-function calculate(){
 
-let coffee=Number(document.getElementById("coffee").value)||20;
-let strength=Number(document.getElementById("strength").value)||15;
-let count=Number(document.getElementById("count").value);
-let type=document.getElementById("type").value;
-let roast=document.getElementById("roast").value;
+/* COFFEE */
 
-/* الحساب الأساسي:
-   البن × معامل القوة */
-let totalWater=Math.round(coffee*strength);
+function updateCoffee(value){
 
-/* الحرارة لا تتجاوز 92 */
-let temperature;
+  coffee = Number(value);
 
-if(roast==="فاتح") temperature=92;
-else if(roast==="متوسط") temperature=90;
-else temperature=87;
+  document.getElementById("coffeeValue").textContent = coffee;
 
-/* وقت مستهدف */
-let targetTime=type==="cold"?"2:00–2:30":"2:30–3:00";
-
-/* الطحن */
-let grind;
-
-if(roast==="فاتح") grind="متوسط إلى ناعم";
-else if(roast==="متوسط") grind="متوسط";
-else grind="متوسط إلى خشن";
-
-/* الصبات التراكمية */
-let pours="";
-
-for(let i=1;i<=count;i++){
-
-let target=Math.round(totalWater*i/count);
-
-let startTime;
-
-if(count===3){
-if(i===1) startTime="0:00";
-if(i===2) startTime="0:30";
-if(i===3) startTime="1:10";
-}else{
-let seconds=Math.round((i-1)*((type==="cold"?120:150)/(count-1)));
-let min=Math.floor(seconds/60);
-let sec=String(seconds%60).padStart(2,"0");
-startTime=min+":"+sec;
+  updateRange(value,10,40,"coffeeSlider");
 }
 
-pours+=`
-<div class="pour">
-<strong>الصبة ${i}</strong>
-<br>
-صب إلى <strong>${target}g</strong>
-<br>
-<span class="small">ابدأ عند ${startTime}</span>
-</div>
-`;
+function changeCoffee(direction){
+
+  let newValue = coffee + (direction === -1 ? 1 : -1);
+
+  if(newValue < 10) newValue = 10;
+  if(newValue > 40) newValue = 40;
+
+  coffee = newValue;
+
+  document.getElementById("coffeeSlider").value = coffee;
+
+  updateCoffee(coffee);
+}
+
+
+/* STRENGTH */
+
+function updateStrength(value){
+
+  strength = Number(value);
+
+  document.getElementById("strengthValue").textContent = strength;
+
+  let word = "متوازنة";
+
+  if(strength < 14.5) word = "أثقل";
+  else if(strength > 15.5) word = "أخف";
+
+  document.getElementById("strengthWord").textContent = word;
+
+  updateRange(value,12,18,"strengthSlider");
+}
+
+
+/* POUR COUNT */
+
+function setPours(value){
+
+  pours = value;
+
+  document.querySelectorAll(".pour-count button").forEach(btn=>{
+    btn.classList.remove("active");
+  });
+
+  [...document.querySelectorAll(".pour-count button")]
+    .find(btn=>Number(btn.textContent)===value)
+    ?.classList.add("active");
+
+  if(document.getElementById("result").classList.contains("show")){
+    calculateRecipe();
+  }
+}
+
+
+/* ROAST */
+
+function setRoast(value,button){
+
+  roast = value;
+
+  document.querySelectorAll(".roast-buttons button").forEach(btn=>{
+    btn.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  if(document.getElementById("result").classList.contains("show")){
+    calculateRecipe();
+  }
+}
+
+
+/* RANGE VISUAL */
+
+function updateRange(value,min,max,id){
+
+  let percentage = ((Number(value)-min)/(max-min))*100;
+
+  document.getElementById(id)
+    .style.setProperty("--progress",percentage+"%");
+}
+
+
+/* CALCULATE */
+
+function calculateRecipe(){
+
+  let totalWater = Math.round(coffee * strength);
+
+  let hotWater = totalWater;
+
+  if(mode === "cold"){
+    hotWater = Math.round(totalWater * 0.5);
+  }
+
+  let ice = totalWater - hotWater;
+
+  let temperature = 90;
+
+  if(roast === "light") temperature = 92;
+  if(roast === "medium") temperature = 90;
+  if(roast === "dark") temperature = 87;
+
+  let grind = "متوسط";
+
+  if(roast === "light") grind = "متوسط إلى ناعم";
+  if(roast === "dark") grind = "متوسط إلى خشن";
+
+  document.getElementById("hotWater").textContent = hotWater + "g";
+  document.getElementById("iceWater").textContent = ice + "g";
+
+  document.getElementById("iceBlock").style.display =
+    mode === "cold" ? "block" : "none";
+
+  document.getElementById("temperature").textContent = temperature + "°";
+  document.getElementById("grind").textContent = grind;
+  document.getElementById("targetTime").textContent =
+    mode === "cold" ? "2:00" : "2:30";
+
+  createPours(hotWater);
+
+  document.getElementById("result").classList.add("show");
+
+  resetTimer();
+}
+
+
+/* CREATE POURS */
+
+function createPours(water){
+
+  pourSchedule = [];
+
+  /*
+    الوقت موزع حسب عدد الصبات.
+    يبدأ التايمر مع بداية الصبة الأولى.
+  */
+
+  let times = [];
+
+  if(pours === 2){
+    times = [0,30];
+  }
+
+  if(pours === 3){
+    times = [0,25,50];
+  }
+
+  if(pours === 4){
+    times = [0,20,40,60];
+  }
+
+  if(pours === 5){
+    times = [0,18,36,54,72];
+  }
+
+  let html = "";
+
+  for(let i=0;i<pours;i++){
+
+    let target = Math.round(water * (i+1) / pours);
+
+    pourSchedule.push({
+      time:times[i],
+      target:target,
+      number:i+1
+    });
+
+    let minute = Math.floor(times[i]/60);
+    let second = String(times[i]%60).padStart(2,"0");
+
+    html += `
+      <div class="pour-item" id="pour-${i}">
+        <div class="pour-number">${i+1}</div>
+
+        <div>
+          <div class="pour-time">
+            ابدأ ${minute}:${second}
+          </div>
+
+          <div class="pour-target">
+            صب حتى ${target}g
+          </div>
+        </div>
+
+        <div class="pour-status">
+          ${i===0 ? "ابدأ هنا" : ""}
+        </div>
+      </div>
+    `;
+  }
+
+  document.getElementById("poursList").innerHTML = html;
+
+  currentPour = 0;
+}
+
+
+/* TIMER */
+
+function toggleTimer(){
+
+  if(timerRunning){
+    pauseTimer();
+    return;
+  }
+
+  startTimer();
+}
+
+
+function startTimer(){
+
+  if(timerRunning) return;
+
+  timerRunning = true;
+
+  document.getElementById("startBtn").textContent = "⏸ إيقاف مؤقت";
+
+  /*
+    تشغيل الصوت من تفاعل المستخدم مع زر المؤقت.
+    هذا مهم في Safari.
+  */
+
+  try{
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+    if(audioContext.state === "suspended"){
+      audioContext.resume();
+    }
+  }catch(e){}
+
+  timerInterval = setInterval(()=>{
+
+    timerSeconds++;
+
+    updateTimerDisplay();
+
+    checkPourAlert();
+
+  },1000);
+
+  /*
+    الصبة الأولى تبدأ فورًا عند 0:00
+  */
+
+  announcePour(0);
+}
+
+
+function pauseTimer(){
+
+  timerRunning = false;
+
+  clearInterval(timerInterval);
+
+  document.getElementById("startBtn").textContent = "▶ متابعة";
+}
+
+
+function resetTimer(){
+
+  clearInterval(timerInterval);
+
+  timerRunning = false;
+  timerSeconds = 0;
+  currentPour = 0;
+
+  updateTimerDisplay();
+
+  document.getElementById("startBtn").textContent = "▶ بدء المؤقت";
+
+  document.getElementById("timerMessage").textContent = "جاهز للبدء";
+
+  document.querySelectorAll(".pour-item").forEach(item=>{
+    item.classList.remove("next");
+  });
+
+  if(document.getElementById("pour-0")){
+    document.getElementById("pour-0").classList.add("next");
+  }
+}
+
+
+function updateTimerDisplay(){
+
+  let minutes = Math.floor(timerSeconds/60);
+
+  let seconds = String(timerSeconds%60).padStart(2,"0");
+
+  document.getElementById("timer").textContent =
+    minutes + ":" + seconds;
+}
+
+
+/* POUR ALERT */
+
+function checkPourAlert(){
+
+  if(currentPour >= pourSchedule.length) return;
+
+  let pour = pourSchedule[currentPour];
+
+  if(timerSeconds >= pour.time){
+
+    announcePour(currentPour);
+
+    currentPour++;
+
+  }
+}
+
+
+function announcePour(index){
+
+  if(!pourSchedule[index]) return;
+
+  let pour = pourSchedule[index];
+
+  let message;
+
+  if(index === 0){
+    message = "ابدأ الصبة الأولى، صب حتى " + pour.target + " جرام";
+  }else{
+    message =
+      "حان وقت الصبة " +
+      pour.number +
+      "، صب حتى " +
+      pour.target +
+      " جرام";
+  }
+
+  document.getElementById("timerMessage").textContent = "🔔 " + message;
+
+  document.querySelectorAll(".pour-item").forEach(item=>{
+    item.classList.remove("next");
+  });
+
+  let item = document.getElementById("pour-"+index);
+
+  if(item){
+    item.classList.add("next");
+
+    item.scrollIntoView({
+      behavior:"smooth",
+      block:"nearest"
+    });
+  }
+
+  playBeep();
+
+  speak(message);
+}
+
+
+/* SOUND */
+
+function playBeep(){
+
+  try{
+
+    if(!audioContext){
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+
+    if(audioContext.state === "suspended"){
+      audioContext.resume();
+    }
+
+    let oscillator = audioContext.createOscillator();
+    let gain = audioContext.createGain();
+
+    oscillator.type = "sine";
+    oscillator.frequency.value = 880;
+
+    gain.gain.setValueAtTime(.001,audioContext.currentTime);
+    gain.gain.exponentialRampToValueAtTime(
+      .18,
+      audioContext.currentTime + .02
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .001,
+      audioContext.currentTime + .35
+    );
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime+.35);
+
+  }catch(e){}
 
 }
 
-let coldInfo="";
 
-if(type==="cold"){
-let ice=Math.round(totalWater*0.5);
-let hotWater=totalWater-ice;
+/* VOICE */
 
-coldInfo=`
-<hr>
-<p>🧊 الثلج: <strong>${ice}g</strong></p>
-<p>💧 الماء الساخن: <strong>${hotWater}g</strong></p>
-`;
-}
+function speak(text){
 
-document.getElementById("result").innerHTML=`
+  try{
 
-<div class="big">${totalWater}g ماء</div>
+    if(!("speechSynthesis" in window)) return;
 
-<p>🫘 البن: <strong>${coffee}g</strong></p>
+    window.speechSynthesis.cancel();
 
-<p>🌡️ الحرارة: <strong>${temperature}°C</strong></p>
+    let speech = new SpeechSynthesisUtterance(text);
 
-<p>⚙️ الطحن: <strong>${grind}</strong></p>
+    speech.lang = "ar-SA";
+    speech.rate = .9;
+    speech.pitch = 1;
 
-<p>⏱️ الوقت: <strong>${targetTime}</strong></p>
+    window.speechSynthesis.speak(speech);
 
-<h3>الصبات</h3>
-
-${pours}
-
-${coldInfo}
-
-<p class="small">
-وَزن يحسب كمية الماء تلقائيًا من وزن البن ومعامل القوة.
-</p>
-`;
-
-document.getElementById("result").classList.remove("hidden");
+  }catch(e){}
 
 }
 
-function espresso(){
 
-let coffee=Number(document.getElementById("espressoCoffee").value)||18;
-let ratio=Number(document.getElementById("espressoStrength").value)||2;
-let output=Math.round(coffee*ratio);
+/* SAVE */
 
-document.getElementById("espressoResult").innerHTML=`
-<div class="big">${output}g</div>
-<p>🫘 البن: <strong>${coffee}g</strong></p>
-<p>⚖️ الناتج: <strong>${output}g</strong></p>
-<p>🌡️ الحرارة: <strong>88–92°C</strong></p>
-<p>⏱️ الوقت: <strong>25–32 ثانية</strong></p>
-`;
+function saveRecipe(){
 
-document.getElementById("espressoResult").classList.remove("hidden");
+  let recipe = {
+    coffee:coffee,
+    strength:strength,
+    pours:pours,
+    roast:roast,
+    mode:mode,
+    date:new Date().toLocaleString("ar-SA")
+  };
 
+  let saved = JSON.parse(
+    localStorage.getItem("waznRecipes") || "[]"
+  );
+
+  saved.unshift(recipe);
+
+  localStorage.setItem(
+    "waznRecipes",
+    JSON.stringify(saved)
+  );
+
+  loadRecipes();
+
+  document.getElementById("timerMessage").textContent =
+    "✓ تم حفظ الوصفة";
 }
+
+
+function loadRecipes(){
+
+  let saved = JSON.parse(
+    localStorage.getItem("waznRecipes") || "[]"
+  );
+
+  let box = document.getElementById("savedRecipes");
+
+  if(saved.length === 0){
+    box.className = "empty";
+    box.innerHTML = "ما عندك وصفات محفوظة حاليًا ☕";
+    return;
+  }
+
+  box.className = "";
+
+  box.innerHTML = saved.map((r,index)=>`
+
+    <div class="crop">
+
+      <strong>
+        ${r.mode==="cold" ? "V60 بارد 🧊" : "V60 حار 🔥"}
+      </strong>
+
+      <p>
+        ${r.coffee}g بن · قوة ${r.strength}
+      </p>
+
+      <p>
+        ${r.pours} صبات ·
+        ${r.roast==="light"?"فاتح":r.roast==="dark"?"غامق":"متوسط"}
+      </p>
+
+      <button
+        class="timer-btn reset"
+        style="width:100%"
+        onclick="deleteRecipe(${index})">
+        حذف
+      </button>
+
+    </div>
+
+  `).join("");
+}
+
+
+function deleteRecipe(index){
+
+  let saved = JSON.parse(
+    localStorage.getItem("waznRecipes") || "[]"
+  );
+
+  saved.splice(index,1);
+
+  localStorage.setItem(
+    "waznRecipes",
+    JSON.stringify(saved)
+  );
+
+  loadRecipes();
+}
+
+
+/* NAVIGATION */
+
+function showPage(id,button){
+
+  document.querySelectorAll(".page").forEach(page=>{
+    page.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+
+  document.querySelectorAll(".nav-btn").forEach(btn=>{
+    btn.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+/* ESPRESSO */
+
+function calculateEspresso(){
+
+  let coffee = Number(
+    document.getElementById("espressoSlider").value
+  );
+
+  let output = Math.round(coffee * 2);
+
+  let box = document.getElementById("espressoResult");
+
+  box.style.display = "block";
+
+  box.innerHTML = `
+    🫘 البن: <strong>${coffee}g</strong><br>
+    ⚖️ الناتج: <strong>${output}g</strong><br>
+    🌡️ الحرارة: <strong>88–92°C</strong><br>
+    ⏱️ الوقت: <strong>25–32 ثانية</strong>
+  `;
+}
+
+
+/* TASTE */
+
+function taste(type){
+
+  let text = "";
+
+  if(type==="ثقيلة"){
+    text = "ننصحك بمعامل أقل من 15 للحصول على قهوة أثقل.";
+  }
+
+  if(type==="خفيفة"){
+    text = "ننصحك بمعامل أعلى من 15 للحصول على قهوة أخف.";
+  }
+
+  if(type==="حلوة"){
+    text = "جرّب تحميصًا متوسطًا وحرارة حول 90°C.";
+  }
+
+  if(type==="فاكهية"){
+    text = "جرّب محصولًا إثيوبيًا أو كينيًا مع تحميص فاتح.";
+  }
+
+  let box = document.getElementById("tasteResult");
+
+  box.style.display = "block";
+  box.textContent = text;
+}
+
+
+/* INITIAL */
+
+updateCoffee(20);
+updateStrength(15);
+loadRecipes();
 
 </script>
 
