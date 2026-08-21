@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>وَزن | مساعد القهوة</title>
+<meta name="theme-color" content="#5b3a29">
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;
+  background:#f6f0e8;
+  color:#3d291e;
+}
+header{
+  background:linear-gradient(135deg,#5b3a29,#8a5a3b);
+  color:white;
+  padding:30px 20px;
+  border-radius:0 0 28px 28px;
+  text-align:center;
+}
+.logo{font-size:42px;font-weight:800;margin-bottom:6px}
+.subtitle{opacity:.9;font-size:15px}
+.container{max-width:650px;margin:auto;padding:20px}
+.card{
+  background:#fffdf9;
+  border-radius:22px;
+  padding:20px;
+  margin-bottom:16px;
+  box-shadow:0 5px 20px rgba(70,45,30,.08);
+}
+h2{margin-top:0}
+label{display:block;font-weight:700;margin:14px 0 7px}
+input,select{
+  width:100%;
+  padding:14px;
+  border:1px solid #dfd2c4;
+  border-radius:14px;
+  background:#fff;
+  color:#3d291e;
+  font-size:16px;
+}
+button{
+  border:0;
+  border-radius:15px;
+  padding:14px 18px;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+}
+.primary{background:#6f472f;color:white;width:100%;margin-top:18px}
+.secondary{background:#eadbcb;color:#4e3223}
+.tabs{display:flex;gap:8px;margin-bottom:16px}
+.tabs button{flex:1;background:#eadbcb;color:#4e3223}
+.tabs button.active{background:#6f472f;color:white}
+.result{
+  background:#f1e4d7;
+  border-radius:18px;
+  padding:16px;
+  margin-top:16px;
+}
+.big{font-size:28px;font-weight:800}
+.pours{
+  display:grid;
+  gap:10px;
+  margin-top:12px;
+}
+.pour{
+  background:white;
+  border-radius:15px;
+  padding:14px;
+  border:1px solid #eadbcb;
+}
+.small{font-size:13px;color:#806b5b}
+.hidden{display:none}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">وَزن</div>
+  <div class="subtitle">اضبط قهوتك بالمقدار الصح ☕</div>
+</header>
+
+<div class="container">
+
+<div class="tabs">
+  <button class="active" onclick="showPage('v60',this)">V60</button>
+  <button onclick="showPage('espresso',this)">Espresso</button>
+  <button onclick="showPage('crops',this)">المحاصيل</button>
+</div>
+
+<!-- V60 -->
+<section id="v60" class="card">
+<h2>V60 ☕</h2>
+
+<label>نوع القهوة</label>
+<select id="v60type">
+<option value="hot">حار 🔥</option>
+<option value="cold">بارد 🧊</option>
+</select>
+
+<label>وزن البن (جرام)</label>
+<input id="coffee" type="number" value="20" min="1">
+
+<label>قوة القهوة</label>
+<input id="factor" type="number" value="15" min="10" max="20">
+<div class="small">15 متوازن — رقم أقل أثقل — رقم أعلى أخف</div>
+
+<label>عدد الصبات</label>
+<select id="poursCount">
+<option value="2">2 صبات</option>
+<option value="3" selected>3 صبات</option>
+<option value="4">4 صبات</option>
+<option value="5">5 صبات</option>
+</select>
+
+<label>درجة التحميص</label>
+<select id="roast">
+<option>فاتح</option>
+<option selected>متوسط</option>
+<option>غامق</option>
+</select>
+
+<label>حجم الحبة</label>
+<select id="beanSize">
+<option>صغيرة</option>
+<option selected>متوسطة</option>
+<option>كبيرة</option>
+</select>
+
+<button class="primary" onclick="calculateV60()">احسب وصفتي</button>
+
+<div id="v60result" class="result hidden"></div>
+</section>
+
+<!-- Espresso -->
+<section id="espresso" class="card hidden">
+<h2>Espresso ☕</h2>
+
+<label>وزن البن (جرام)</label>
+<input id="espressoCoffee" type="number" value="18">
+
+<label>نسبة الاستخلاص</label>
+<select id="espressoRatio">
+<option value="2" selected>متوازن</option>
+<option value="1.5">أثقل</option>
+<option value="2.5">أخف</option>
+</select>
+
+<button class="primary" onclick="calculateEspresso()">احسب الإسبريسو</button>
+
+<div id="espressoResult" class="result hidden"></div>
+</section>
+
+<!-- Crops -->
+<section id="crops" class="card hidden">
+<h2>المحاصيل 🌱</h2>
+
+<div class="result">
+<strong>🇨🇴 كولومبيا</strong>
+<p>حلاوة وقوام جيد، وقد تناسب من يحب القهوة المتوازنة والمرارة الخفيفة إلى المتوسطة.</p>
+</div>
+
+<div class="result">
+<strong>🇪🇹 إثيوبيا</strong>
+<p>غالبًا فاكهية وعطرية وحمضيتها أوضح.</p>
+</div>
+
+<div class="result">
+<strong>🇨🇷 كوستاريكا</strong>
+<p>قد تتميز بالحلاوة والفاكهية مع توازن جيد.</p>
+</div>
+
+<div class="result">
+<strong>🇧🇷 البرازيل</strong>
+<p>غالبًا قوام أعلى ونكهات شوكولاتية ومكسرات.</p>
+</div>
+
+<div class="result">
+<strong>🇾🇪 اليمن</strong>
+<p>نكهات مميزة ومعقدة، وقد تجمع بين الفاكهية والتوابل والحلاوة حسب المحصول والمعالجة.</p>
+</div>
+
+<div class="result">
+<strong>🇰🇪 كينيا</strong>
+<p>غالبًا فاكهية وحموضتها واضحة.</p>
+</div>
+</section>
+
+</div>
+
+<script>
+function showPage(page,btn){
+  document.querySelectorAll(".container > section").forEach(s=>s.classList.add("hidden"));
+  document.getElementById(page).classList.remove("hidden");
+  document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+}
+
+function getTemperature(roast,type){
+  if(type==="cold"){
+    if(roast==="فاتح") return 92;
+    if(roast==="متوسط") return 90;
+    return 87;
+  }
+  if(roast==="فاتح") return 92;
+  if(roast==="متوسط") return 90;
+  return 87;
+}
+
+function getGrind(roast,size){
+  if(roast==="فاتح"){
+    if(size==="صغيرة") return "متوسط";
+    if(size==="متوسطة") return "متوسط إلى ناعم";
+    return "متوسط";
+  }
+  if(roast==="غامق"){
+    if(size==="كبيرة") return "متوسط إلى ناعم";
+    return "متوسط";
+  }
+  return "متوسط";
+}
+
+function calculateV60(){
+  let coffee=parseFloat(document.getElementById("coffee").value)||20;
+  let factor=parseFloat(document.getElementById("factor").value)||15;
+  let count=parseInt(document.getElementById("poursCount").value);
+  let roast=document.getElementById("roast").value;
+  let size=document.getElementById("beanSize").value;
+  let type=document.getElementById("v60type").value;
+
+  let water=Math.round(coffee*factor);
+  let temperature=getTemperature(roast,type);
+  let grind=getGrind(roast,size);
+
+  let html=`
+    <div class="big">${water}g ماء</div>
+    <p>🫘 البن: <strong>${coffee}g</strong></p>
+    <p>🌡️ الحرارة: <strong>${temperature}°C</strong></p>
+    <p>⚙️ الطحن: <strong>${grind}</strong></p>
+    <p>⏱️ الوقت المستهدف: <strong>${type==="cold" ? "2:00–2:30" : "2:30–3:00"}</strong></p>
+    <h3>الصبات</h3>
+    <div class="pours">
+  `;
+
+  for(let i=1;i<=count;i++){
+    let target=Math.round(water*i/count);
+    let time;
+    if(count===3){
+      time=["0:00","0:30","1:10"][i-1];
+    }else{
+      time=(i===1)?"0:00":`${Math.round((i-1)*45/60)}:${String(Math.round((i-1)*45)%60).padStart(2,"0")}`;
+    }
+
+    html+=`
+      <div class="pour">
+        <strong>الصبة ${i}</strong><br>
+        صب إلى <strong>${target}g</strong>
+        <div class="small">ابدأ عند ${time}</div>
+      </div>
+    `;
+  }
+
+  html+=`</div>
+  <p class="small">الأرقام نقطة بداية ويمكن تعديلها حسب البن والتحميص وطريقة التحضير.</p>`;
+
+  if(type==="cold"){
+    let ice=Math.round(water*0.5);
+    let hotWater=water-ice;
+    html+=`<p>🧊 الثلج المقترح: <strong>${ice}g</strong></p>
+            <p>💧 الماء الساخن: <strong>${hotWater}g</strong></p>`;
+  }
+
+  html+=`</div>`;
+
+  let result=document.getElementById("v60result");
+  result.innerHTML=html;
+  result.classList.remove("hidden");
+}
+
+function calculateEspresso(){
+  let coffee=parseFloat(document.getElementById("espressoCoffee").value)||18;
+  let ratio=parseFloat(document.getElementById("espressoRatio").value)||2;
+  let yieldAmount=Math.round(coffee*ratio);
+
+  let result=document.getElementById("espressoResult");
+  result.innerHTML=`
+    <div class="big">${yieldAmount}g Yield</div>
+    <p>🫘 البن: <strong>${coffee}g</strong></p>
+    <p>⚖️ الناتج المستهدف: <strong>${yieldAmount}g</strong></p>
+    <p>🌡️ الحرارة المقترحة: <strong>88–92°C</strong></p>
+    <p>⏱️ الوقت المستهدف: <strong>25–32 ثانية</strong></p>
+  `;
+  result.classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
