@@ -5,1022 +5,2041 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#faf8f3">
 <title>وَزن</title>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap');
+
 :root{
- --bg:#faf8f3;
- --card:#fffdf9;
- --cream:#f3eee4;
- --line:#dfd7ca;
- --brown:#4b3028;
- --text:#49332c;
- --muted:#76665d;
- --accent:#c98b5b;
- --accent-dark:#a86d43;
+  --bg:#faf8f3;
+  --card:#fffdf9;
+  --cream:#f2ece2;
+  --line:#ded5c8;
+  --brown:#4b3028;
+  --text:#49332c;
+  --muted:#76665d;
+  --accent:#c98b5b;
+  --accent-dark:#a96d43;
 }
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
 body{
- margin:0;
- background:var(--bg);
- color:var(--text);
- font-family:Tajawal,sans-serif;
- min-height:100vh;
+  margin:0;
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Tajawal,sans-serif;
 }
+
+button,
+input{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
 .app{
- width:100%;
- max-width:700px;
- margin:auto;
- padding:18px 18px 115px;
+  width:100%;
+  max-width:700px;
+  margin:auto;
+  padding:15px 16px 115px;
 }
+
+/* =========================
+   HEADER
+========================= */
+
 .header{
- text-align:center;
- padding:18px 0 22px;
+  padding:10px 0 22px;
+  text-align:center;
 }
+
 .version{
- text-align:left;
- direction:ltr;
- font-size:13px;
- color:var(--muted);
+  text-align:left;
+  direction:ltr;
+  font-size:13px;
+  color:var(--muted);
 }
+
 .logo{
- font-family:Amiri,serif;
- font-size:48px;
- font-weight:700;
- line-height:1;
+  font-family:Amiri,serif;
+  font-size:49px;
+  line-height:1;
+  font-weight:700;
 }
+
 .tagline{
- font-family:Amiri,serif;
- font-size:20px;
- color:#72564a;
- margin-top:5px;
+  font-family:Amiri,serif;
+  font-size:20px;
+  color:#73584d;
+  margin-top:5px;
 }
-/* أعلى اختيار */
-.mode{
- background:var(--cream);
- border:1px solid var(--line);
- border-radius:50px;
- padding:7px;
- display:flex;
- gap:5px;
- margin-bottom:24px;
-}
-.mode button{
- flex:1;
- border:0;
- background:transparent;
- color:var(--brown);
- padding:15px 10px;
- border-radius:42px;
- font-family:inherit;
- font-size:18px;
- font-weight:700;
-}
-.mode button.active{
- background:var(--accent);
- color:white;
-}
-/* البطاقات */
-.card{
- background:rgba(255,253,249,.96);
- border:1px solid var(--line);
- border-radius:28px;
- padding:24px;
- margin-bottom:18px;
-}
-.card-title{
- font-size:20px;
- font-weight:800;
- margin-bottom:20px;
- display:flex;
- justify-content:space-between;
- align-items:center;
-}
-.amount-row{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin-bottom:20px;
-}
-.amount-label{
- font-size:19px;
- font-weight:800;
-}
-.amount-value{
- font-size:39px;
- font-weight:800;
- direction:ltr;
-}
-.amount-value small{
- font-size:16px;
- margin-right:5px;
-}
-.amount-controls{
- display:flex;
- align-items:center;
- gap:18px;
-}
-.round-btn{
- width:58px;
- height:58px;
- border:0;
- border-radius:50%;
- background:var(--cream);
- color:var(--brown);
- font-size:29px;
- font-weight:500;
-}
-input[type=range]{
- width:100%;
- height:8px;
- appearance:none;
- -webkit-appearance:none;
- border-radius:20px;
- direction:rtl;
- background:linear-gradient(
-   to left,
-   var(--slider-color,var(--accent)) 0%,
-   var(--slider-color,var(--accent)) var(--progress,50%),
-   #ddd9d3 var(--progress,50%),
-   #ddd9d3 100%
- );
-}
-input[type=range]::-webkit-slider-thumb{
- appearance:none;
- -webkit-appearance:none;
- width:38px;
- height:38px;
- border-radius:50%;
- background:var(--bg);
- border:5px solid var(--slider-color,var(--accent));
- box-shadow:0 3px 10px rgba(0,0,0,.08);
-}
-input[type=range]::-moz-range-thumb{
- width:29px;
- height:29px;
- border-radius:50%;
- background:var(--bg);
- border:5px solid var(--slider-color,var(--accent));
-}
-/* الخيارات */
-.choice-grid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:10px;
-}
-.choice-grid button{
- border:1px solid var(--line);
- background:var(--cream);
- border-radius:17px;
- padding:16px 5px;
- font-family:inherit;
- font-size:17px;
- font-weight:700;
- color:var(--brown);
- transition:.15s;
-}
-.choice-grid button.active{
- background:var(--cream);
- color:var(--brown);
- border:2px solid var(--accent-dark);
- box-shadow:inset 0 0 0 1px var(--accent-dark);
-}
-.roast-buttons{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:10px;
-}
-.roast-buttons button{
- border:1px solid var(--line);
- background:var(--cream);
- border-radius:16px;
- padding:14px 5px;
- font-family:inherit;
- color:var(--brown);
- font-weight:700;
-}
-.roast-buttons button.active{
- background:var(--accent);
- color:#fff;
- border-color:var(--accent);
-}
-/* قوة القهوة */
-.strength-labels{
- display:flex;
- justify-content:space-between;
- margin-top:18px;
- font-size:15px;
-}
-.strength-center{
- font-size:18px;
- font-weight:800;
-}
-/* الصبات */
-.pour-count{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:10px;
-}
-.pour-count button{
- border:0;
- background:var(--cream);
- border-radius:17px;
- padding:17px 5px;
- font-size:19px;
- font-weight:800;
- color:var(--brown);
-}
-.pour-count button.active{
- background:var(--accent);
- color:#fff;
-}
-/* زر الحساب */
-.calculate{
- width:100%;
- border:0;
- background:var(--brown);
- color:#fff;
- border-radius:20px;
- padding:17px;
- font-family:inherit;
- font-size:18px;
- font-weight:800;
- margin-top:18px;
-}
-/* النتائج */
-.result{
- display:none;
-}
-.result.show{
- display:block;
-}
-.water-card{
- background:var(--brown);
- color:#fff;
- border-radius:0 0 28px 28px;
- margin:-24px -24px 20px;
- padding:24px;
- display:flex;
- justify-content:space-around;
- text-align:center;
-}
-.water-number{
- font-size:29px;
- font-weight:800;
- direction:ltr;
-}
-.water-label{
- opacity:.9;
- margin-bottom:4px;
-}
-.info-grid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:10px;
- margin-bottom:20px;
-}
-.info-box{
- border:1px solid var(--line);
- border-radius:20px;
- padding:17px 8px;
- text-align:center;
- background:#fffdfa;
-}
-.info-label{
- font-size:14px;
-}
-.info-value{
- font-size:22px;
- font-weight:800;
- margin-top:6px;
-}
-/* تفاصيل */
-.prof-grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
-}
-.prof-box{
- background:#fffdfa;
- border:1px solid var(--line);
- border-radius:18px;
- padding:15px;
-}
-.prof-label{
- font-size:13px;
- color:var(--muted);
-}
-.prof-value{
- font-size:19px;
- font-weight:800;
- margin-top:5px;
-}
-.note{
- background:#f1e4d8;
- border-radius:18px;
- padding:14px;
- margin-top:14px;
- text-align:center;
- font-size:14px;
- line-height:1.8;
-}
-/* الصبات */
-.pours-card{
- background:#f3eee4;
- border:1px solid var(--line);
- border-radius:27px;
- padding:20px;
-}
-.pours-head{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin-bottom:14px;
-}
-.pours-title{
- font-size:23px;
- font-weight:800;
-}
-.pours-sub{
- font-size:13px;
- color:var(--muted);
-}
-.pour-item{
- background:#fffdf9;
- border:1px solid var(--line);
- border-radius:22px;
- padding:16px;
- margin-top:10px;
- display:grid;
- grid-template-columns:40px 1fr auto;
- align-items:center;
- gap:8px;
-}
-.pour-item.next{
- border:2px solid var(--accent);
-}
-.pour-number{
- font-size:24px;
- font-weight:800;
- color:var(--accent-dark);
-}
-.pour-time{
- font-size:14px;
- margin-bottom:4px;
-}
-.pour-target{
- font-size:22px;
- font-weight:800;
-}
-.pour-status{
- font-size:12px;
- color:var(--muted);
-}
-/* المؤقت */
-.timer-box{
- text-align:center;
- padding:24px 10px 5px;
-}
-.timer{
- font-size:52px;
- font-weight:800;
- direction:ltr;
-}
-.timer-message{
- min-height:28px;
- font-weight:700;
- color:var(--accent-dark);
- margin:7px 0 15px;
-}
-.timer-buttons{
- display:flex;
- gap:10px;
-}
-.timer-btn{
- flex:1;
- border:0;
- border-radius:20px;
- padding:17px 10px;
- font-family:inherit;
- font-size:16px;
- font-weight:800;
-}
-.start{
- background:var(--accent);
- color:#fff;
-}
-.reset{
- background:#eee8de;
- color:var(--brown);
-}
-.save{
- background:transparent;
- border:1px solid var(--line);
- color:var(--brown);
-}
-/* الصفحات */
-.simple-title{
- font-family:Amiri,serif;
- font-size:34px;
- margin:10px 0 20px;
-}
+
+/* =========================
+   PAGE TRANSITION
+========================= */
+
 .page{
- display:none;
+  display:none;
+  opacity:0;
+  transform:translateX(18px);
 }
+
 .page.active{
- display:block;
+  display:block;
+  animation:pageEnter .42s cubic-bezier(.22,.61,.36,1) forwards;
 }
-.section-text{
- color:var(--muted);
- font-size:14px;
- line-height:1.9;
+
+@keyframes pageEnter{
+  from{
+    opacity:0;
+    transform:translateX(18px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
 }
-/* المحاصيل */
+
+/* =========================
+   MODE
+========================= */
+
+.mode{
+  display:flex;
+  gap:6px;
+  padding:7px;
+  margin-bottom:22px;
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:50px;
+}
+
+.mode button{
+  flex:1;
+  border:0;
+  background:transparent;
+  color:var(--brown);
+  padding:14px 10px;
+  border-radius:42px;
+  font-size:18px;
+  font-weight:800;
+  transition:.25s ease;
+}
+
+.mode button.active{
+  background:var(--accent);
+  color:#fff;
+}
+
+/* الرموز تكون بنفس هوية التطبيق */
+.mode-symbol{
+  color:inherit;
+  filter:grayscale(1);
+  opacity:.85;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card{
+  background:rgba(255,253,249,.96);
+  border:1px solid var(--line);
+  border-radius:28px;
+  padding:23px;
+  margin-bottom:17px;
+}
+
+.card-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+  font-size:20px;
+  font-weight:800;
+}
+
+/* =========================
+   COFFEE AMOUNT
+========================= */
+
+.amount-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.amount-label{
+  font-size:19px;
+  font-weight:800;
+}
+
+.amount-value{
+  font-size:38px;
+  font-weight:800;
+  direction:ltr;
+}
+
+.amount-value small{
+  font-size:15px;
+  margin-right:4px;
+}
+
+.amount-controls{
+  display:flex;
+  align-items:center;
+  gap:17px;
+}
+
+.round-btn{
+  width:57px;
+  height:57px;
+  border:0;
+  border-radius:50%;
+  background:var(--cream);
+  color:var(--brown);
+  font-size:28px;
+}
+
+/* =========================
+   SLIDERS
+========================= */
+
+input[type="range"]{
+  width:100%;
+  height:8px;
+  appearance:none;
+  -webkit-appearance:none;
+  border-radius:20px;
+  direction:rtl;
+  background:
+    linear-gradient(
+      to left,
+      var(--slider-color,var(--accent)) 0%,
+      var(--slider-color,var(--accent)) var(--progress,50%),
+      #ddd9d3 var(--progress,50%),
+      #ddd9d3 100%
+    );
+}
+
+input[type="range"]::-webkit-slider-thumb{
+  appearance:none;
+  -webkit-appearance:none;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:var(--bg);
+  border:5px solid var(--slider-color,var(--accent));
+  box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+input[type="range"]::-moz-range-thumb{
+  width:29px;
+  height:29px;
+  border-radius:50%;
+  background:var(--bg);
+  border:5px solid var(--slider-color,var(--accent));
+}
+
+.strength-labels{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:17px;
+  font-size:14px;
+}
+
+.strength-center{
+  font-size:17px;
+  font-weight:800;
+}
+
+/* =========================
+   CHOICES
+========================= */
+
+.choice-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.choice-grid button{
+  border:1px solid var(--line);
+  background:var(--cream);
+  color:var(--brown);
+  border-radius:17px;
+  padding:15px 5px;
+  font-size:16px;
+  font-weight:700;
+  transition:.2s ease;
+}
+
+/* نفس اللون - فقط إطار عند الاختيار */
+.choice-grid button.active{
+  background:var(--cream);
+  color:var(--brown);
+  border:2px solid var(--accent-dark);
+  box-shadow:inset 0 0 0 1px var(--accent-dark);
+}
+
+.roast-buttons{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.roast-buttons button{
+  border:1px solid var(--line);
+  background:var(--cream);
+  color:var(--brown);
+  border-radius:17px;
+  padding:14px 5px;
+  font-weight:700;
+}
+
+.roast-buttons button.active{
+  background:var(--accent);
+  color:white;
+  border-color:var(--accent);
+}
+
+.pour-count{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:9px;
+}
+
+.pour-count button{
+  border:0;
+  background:var(--cream);
+  color:var(--brown);
+  border-radius:17px;
+  padding:16px 5px;
+  font-size:19px;
+  font-weight:800;
+}
+
+.pour-count button.active{
+  background:var(--accent);
+  color:white;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.calculate{
+  width:100%;
+  border:0;
+  border-radius:20px;
+  padding:17px;
+  background:var(--brown);
+  color:white;
+  font-size:18px;
+  font-weight:800;
+  transition:.2s ease;
+}
+
+.calculate:active{
+  transform:scale(.98);
+}
+
+/* =========================
+   RESULT
+========================= */
+
+.result{
+  display:none;
+}
+
+.result.show{
+  display:block;
+  animation:fadeUp .4s ease;
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.water-card{
+  display:flex;
+  justify-content:space-around;
+  text-align:center;
+  margin:-23px -23px 20px;
+  padding:24px;
+  background:var(--brown);
+  color:white;
+  border-radius:0 0 28px 28px;
+}
+
+.water-label{
+  opacity:.9;
+  margin-bottom:4px;
+}
+
+.water-number{
+  font-size:29px;
+  font-weight:800;
+  direction:ltr;
+}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin-bottom:19px;
+}
+
+.info-box{
+  background:#fffdfa;
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:16px 7px;
+  text-align:center;
+}
+
+.info-label{
+  font-size:13px;
+}
+
+.info-value{
+  font-size:21px;
+  font-weight:800;
+  margin-top:6px;
+}
+
+.prof-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
+.prof-box{
+  background:#fffdfa;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+}
+
+.prof-label{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.prof-value{
+  margin-top:5px;
+  font-size:18px;
+  font-weight:800;
+}
+
+.note{
+  background:#f1e4d8;
+  border-radius:18px;
+  padding:14px;
+  margin-top:14px;
+  line-height:1.9;
+  font-size:14px;
+  text-align:center;
+}
+
+/* =========================
+   POURS
+========================= */
+
+.pours-card{
+  background:#f3eee4;
+  border:1px solid var(--line);
+  border-radius:27px;
+  padding:19px;
+}
+
+.pours-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+
+.pours-title{
+  font-size:23px;
+  font-weight:800;
+}
+
+.pours-sub{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.pour-item{
+  display:grid;
+  grid-template-columns:40px 1fr auto;
+  align-items:center;
+  gap:8px;
+  margin-top:10px;
+  padding:15px;
+  background:#fffdf9;
+  border:1px solid var(--line);
+  border-radius:21px;
+  transition:.25s ease;
+}
+
+.pour-item.next{
+  border:2px solid var(--accent);
+  transform:translateY(-1px);
+}
+
+.pour-number{
+  color:var(--accent-dark);
+  font-size:24px;
+  font-weight:800;
+}
+
+.pour-time{
+  margin-bottom:4px;
+  font-size:13px;
+}
+
+.pour-target{
+  font-size:21px;
+  font-weight:800;
+}
+
+/* =========================
+   TIMER
+========================= */
+
+.timer-box{
+  padding:24px 8px 5px;
+  text-align:center;
+}
+
+.timer{
+  font-size:51px;
+  font-weight:800;
+  direction:ltr;
+}
+
+.timer-message{
+  min-height:29px;
+  margin:7px 0 14px;
+  color:var(--accent-dark);
+  font-weight:800;
+}
+
+.timer-buttons{
+  display:flex;
+  gap:9px;
+}
+
+.timer-btn{
+  flex:1;
+  border:0;
+  border-radius:20px;
+  padding:16px 8px;
+  font-size:15px;
+  font-weight:800;
+}
+
+.start{
+  background:var(--accent);
+  color:white;
+}
+
+.reset{
+  background:#eee8de;
+  color:var(--brown);
+}
+
+.save{
+  width:100%;
+  margin-top:9px;
+  background:transparent;
+  color:var(--brown);
+  border:1px solid var(--line);
+}
+
+/* =========================
+   TITLES
+========================= */
+
+.simple-title{
+  margin:8px 0 19px;
+  font-family:Amiri,serif;
+  font-size:35px;
+}
+
+/* =========================
+   CROPS
+========================= */
+
+.crop-tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+  padding:6px;
+  margin-bottom:17px;
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:22px;
+}
+
+.crop-tab{
+  border:0;
+  background:transparent;
+  color:var(--brown);
+  border-radius:17px;
+  padding:14px 7px;
+  font-size:16px;
+  font-weight:800;
+  transition:.25s ease;
+}
+
+.crop-tab.active{
+  background:var(--brown);
+  color:white;
+}
+
+.crop-content{
+  display:none;
+}
+
+.crop-content.active{
+  display:block;
+  animation:tabEnter .35s ease;
+}
+
+@keyframes tabEnter{
+  from{
+    opacity:0;
+    transform:translateX(12px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
+  }
+}
+
 .crop{
- border:1px solid var(--line);
- border-radius:22px;
- background:#fffdf9;
- padding:18px;
- margin-bottom:12px;
+  background:#fffdf9;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:17px;
+  margin-bottom:11px;
 }
-.crop strong{
- font-size:19px;
+
+.crop-name{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:20px;
 }
+
+.crop-name span{
+  font-size:24px;
+}
+
 .crop p{
- line-height:1.8;
- color:var(--muted);
- margin:8px 0 0;
+  margin:8px 0 0;
+  color:var(--muted);
+  line-height:1.9;
+  font-size:14px;
 }
-/* ذوقي */
+
+/* =========================
+   COFFEE JOURNEY
+========================= */
+
+.journey-intro{
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:19px;
+  margin-bottom:14px;
+  text-align:center;
+}
+
+.journey-title{
+  font-family:Amiri,serif;
+  font-size:29px;
+  font-weight:700;
+}
+
+.journey-subtitle{
+  color:var(--muted);
+  font-size:14px;
+  margin-top:3px;
+}
+
+.coffee-step{
+  position:relative;
+  overflow:hidden;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:25px;
+  margin-bottom:15px;
+  box-shadow:0 5px 18px rgba(60,40,25,.05);
+}
+
+.coffee-step img{
+  display:block;
+  width:100%;
+  height:205px;
+  object-fit:cover;
+}
+
+.step-number{
+  position:absolute;
+  top:13px;
+  right:13px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:var(--brown);
+  color:white;
+  font-size:16px;
+  font-weight:800;
+  box-shadow:0 3px 10px rgba(0,0,0,.16);
+}
+
+.step-body{
+  padding:16px 18px 19px;
+}
+
+.step-body h3{
+  margin:0 0 6px;
+  font-size:21px;
+}
+
+.step-body p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.9;
+  font-size:15px;
+}
+
+/* =========================
+   TASTE
+========================= */
+
 .taste-question{
- font-size:20px;
- font-weight:800;
- margin-bottom:15px;
+  margin-bottom:15px;
+  font-size:20px;
+  font-weight:800;
 }
+
 .taste-options{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
 }
+
 .taste-options button{
- border:1px solid var(--line);
- background:var(--cream);
- border-radius:18px;
- padding:17px 8px;
- color:var(--brown);
- font-family:inherit;
- font-size:17px;
- font-weight:700;
+  border:1px solid var(--line);
+  background:var(--cream);
+  color:var(--brown);
+  border-radius:18px;
+  padding:16px 7px;
+  font-size:16px;
+  font-weight:700;
+  transition:.2s;
 }
+
 .taste-options button.active{
- border:2px solid var(--accent-dark);
+  border:2px solid var(--accent-dark);
 }
+
 .taste-result{
- display:none;
+  display:none;
 }
+
 .taste-result.show{
- display:block;
+  display:block;
+  animation:fadeUp .35s ease;
 }
+
 .recommendation{
- background:var(--cream);
- border:1px solid var(--line);
- border-radius:23px;
- padding:20px;
- margin-top:16px;
+  background:var(--cream);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:19px;
+  margin-top:13px;
 }
+
 .recommendation-title{
- font-size:21px;
- font-weight:800;
- margin-bottom:10px;
+  font-size:20px;
+  font-weight:800;
 }
+
 .recommendation-bean{
- font-size:24px;
- font-weight:800;
- color:var(--accent-dark);
- margin-bottom:10px;
+  margin:7px 0;
+  color:var(--accent-dark);
+  font-size:25px;
+  font-weight:800;
 }
-/* التنقل السفلي */
-.bottom-nav{
- position:fixed;
- z-index:50;
- bottom:12px;
- left:50%;
- transform:translateX(-50%);
- width:calc(100% - 28px);
- max-width:650px;
- background:rgba(255,253,249,.96);
- backdrop-filter:blur(18px);
- border:1px solid var(--line);
- border-radius:35px;
- box-shadow:0 8px 30px rgba(60,40,25,.12);
- display:grid;
- grid-template-columns:repeat(5,1fr);
- padding:8px 5px;
+
+/* =========================
+   ESPRESSO
+========================= */
+
+.espresso-result{
+  display:none;
 }
-.nav-btn{
- border:0;
- background:transparent;
- color:#594840;
- font-family:inherit;
- padding:11px 2px;
- border-radius:25px;
- font-size:13px;
- font-weight:600;
+
+.espresso-result.show{
+  display:block;
 }
-.nav-btn.active{
- color:var(--accent-dark);
- font-weight:800;
- background:var(--cream);
+
+.espresso-option{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
 }
-/* وصفاتي */
+
+.espresso-option button{
+  border:1px solid var(--line);
+  background:var(--cream);
+  color:var(--brown);
+  border-radius:17px;
+  padding:15px 5px;
+  font-size:15px;
+  font-weight:800;
+}
+
+.espresso-option button.active{
+  background:var(--accent);
+  color:white;
+  border-color:var(--accent);
+}
+
+/* =========================
+   RECIPES
+========================= */
+
 .recipe-item{
- border:1px solid var(--line);
- border-radius:22px;
- background:#fffdf9;
- padding:18px;
- margin-bottom:12px;
+  background:#fffdf9;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:17px;
+  margin-bottom:11px;
 }
-.empty{
- text-align:center;
- padding:45px 15px;
- color:var(--muted);
+
+.recipe-item strong{
+  font-size:18px;
 }
+
+.recipe-item p{
+  color:var(--muted);
+  line-height:1.8;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.bottom-nav{
+  position:fixed;
+  z-index:100;
+  bottom:12px;
+  left:50%;
+  width:calc(100% - 28px);
+  max-width:650px;
+  transform:translateX(-50%);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  padding:7px 5px;
+  background:rgba(255,253,249,.96);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--line);
+  border-radius:35px;
+  box-shadow:0 8px 30px rgba(60,40,25,.12);
+}
+
+.nav-btn{
+  border:0;
+  background:transparent;
+  color:#594840;
+  border-radius:25px;
+  padding:11px 2px;
+  font-size:13px;
+  font-weight:600;
+  transition:.25s ease;
+}
+
+.nav-btn.active{
+  background:var(--cream);
+  color:var(--accent-dark);
+  font-weight:800;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:430px){
- .app{
-  padding-left:15px;
-  padding-right:15px;
- }
- .card{
-  padding:20px;
- }
- .water-card{
-  margin:-20px -20px 18px;
- }
- .logo{
-  font-size:45px;
- }
- .timer{
-  font-size:47px;
- }
- .nav-btn{
-  font-size:12px;
- }
+
+  .app{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .card{
+    padding:20px;
+  }
+
+  .water-card{
+    margin:-20px -20px 18px;
+  }
+
+  .logo{
+    font-size:45px;
+  }
+
+  .timer{
+    font-size:47px;
+  }
+
+  .nav-btn{
+    font-size:12px;
+  }
+
+  .coffee-step img{
+    height:190px;
+  }
 }
 </style>
 </head>
+
 <body>
+
 <div class="app">
+
 <header class="header">
-<div class="version">v1.2</div>
-<div class="logo">وَزن</div>
-<div class="tagline">اضبط قهوتك بالمقدار الصح</div>
+  <div class="version">v1.3</div>
+  <div class="logo">وَزن</div>
+  <div class="tagline">اضبط قهوتك بالمقدار الصح</div>
 </header>
-<!-- V60 -->
-<div id="v60Page" class="page active">
-<div class="mode">
-<button id="hotBtn" onclick="setMode('hot')">حار</button>
-<button id="coldBtn" class="active" onclick="setMode('cold')">بارد</button>
-</div>
-<div class="card">
-<div class="amount-row">
-<div class="amount-label">كمية البن</div>
-<div class="amount-value">
-<span id="coffeeValue">20</span>
-<small>جرام</small>
-</div>
-</div>
-<div class="amount-controls">
-<button class="round-btn" onclick="changeCoffee(-1)">−</button>
-<div style="flex:1">
-<input id="coffeeSlider"
-type="range"
-min="10"
-max="40"
-value="20"
-oninput="updateCoffee(this.value)">
-</div>
-<button class="round-btn" onclick="changeCoffee(1)">+</button>
-</div>
-</div>
-<div class="card">
-<div class="card-title">
-<span>درجة حرارة الماء</span>
-<span id="temperatureValue">90°C</span>
-</div>
-<input
-id="temperatureSlider"
-type="range"
-min="80"
-max="95"
-value="90"
-oninput="updateTemperature(this.value)"
->
-<div class="strength-labels">
-<span>80°</span>
-<span class="strength-center">الحرارة</span>
-<span>95°</span>
-</div>
-</div>
-<div class="card">
-<div class="card-title">
-<span>قوة القهوة</span>
-<span id="strengthWord" style="color:var(--accent-dark)">متوازنة</span>
-</div>
-<input
-id="strengthSlider"
-type="range"
-min="12"
-max="18"
-step=".5"
-value="15"
-oninput="updateStrength(this.value)"
->
-<div class="strength-labels">
-<span>أخف</span>
-<span class="strength-center" id="strengthValue">15</span>
-<span>أثقل</span>
-</div>
-</div>
-<div class="card">
-<div class="card-title">عدد الصبات</div>
-<div class="pour-count">
-<button onclick="setPours(5)">5</button>
-<button onclick="setPours(4)">4</button>
-<button class="active" onclick="setPours(3)">3</button>
-<button onclick="setPours(2)">2</button>
-</div>
-</div>
-<div class="card">
-<div class="card-title">درجة التحميص</div>
-<div class="roast-buttons">
-<button onclick="setRoast('light',this)">فاتح</button>
-<button class="active" onclick="setRoast('medium',this)">متوسط</button>
-<button onclick="setRoast('dark',this)">غامق</button>
-</div>
-</div>
-<div class="card">
-<div class="card-title">حجم حبة البن</div>
-<div class="choice-grid">
-<button class="active" onclick="setBean('small',this)">صغيرة</button>
-<button onclick="setBean('medium',this)">متوسطة</button>
-<button onclick="setBean('large',this)">كبيرة</button>
-</div>
-<div class="note" id="beanAdvice">
-اختر حجم الحبة، وسيستخدمه وَزن مع بقية البيانات لتحديد الطحن المناسب.
-</div>
-</div>
-<button class="calculate" onclick="calculateRecipe()">
-احسب الوصفة
-</button>
-<div id="result" class="result">
-<div class="card">
-<div class="water-card">
-<div>
-<div class="water-label">الماء</div>
-<div class="water-number" id="hotWater">150g</div>
-</div>
-<div id="iceBlock">
-<div class="water-label">الثلج</div>
-<div class="water-number" id="iceWater">150g</div>
-</div>
-</div>
-<div class="info-grid">
-<div class="info-box">
-<div class="info-label">الحرارة</div>
-<div class="info-value" id="resultTemperature">90°</div>
-</div>
-<div class="info-box">
-<div class="info-label">الطحن</div>
-<div class="info-value" id="grind">متوسط</div>
-</div>
-<div class="info-box">
-<div class="info-label">الوقت</div>
-<div class="info-value" id="targetTime">2:00</div>
-</div>
-</div>
-<div class="prof-grid">
-<div class="prof-box">
-<div class="prof-label">النسبة</div>
-<div class="prof-value" id="ratio">1:15</div>
-</div>
-<div class="prof-box">
-<div class="prof-label">الحبة</div>
-<div class="prof-value" id="density">صغيرة</div>
-</div>
-<div class="prof-box">
-<div class="prof-label">تعديل الطحن</div>
-<div class="prof-value" id="grindAdvice">—</div>
-</div>
-<div class="prof-box">
-<div class="prof-label">التحميص</div>
-<div class="prof-value" id="roastResult">متوسط</div>
-</div>
-</div>
-<div class="note">
-إذا كان النزول سريعًا والطعم حامضًا: اجعل الطحن أنعم.
-إذا كان النزول بطيئًا والطعم مرًا أو جافًا: اجعله أخشن.
-</div>
-</div>
-<div class="pours-card">
-<div class="pours-head">
-<div class="pours-title">الصبات</div>
-<div class="pours-sub">الوزن التراكمي</div>
-</div>
-<div id="poursList"></div>
-<div class="timer-box">
-<div class="timer" id="timer">0:00</div>
-<div class="timer-message" id="timerMessage">
-جاهز للبدء
-</div>
-<div class="timer-buttons">
-<button class="timer-btn start" id="startBtn" onclick="toggleTimer()">
-بدء المؤقت
-</button>
-<button class="timer-btn reset" onclick="resetTimer()">
-إعادة
-</button>
-</div>
-<button
-class="timer-btn save"
-style="width:100%;margin-top:10px"
-onclick="saveRecipe()">
-حفظ الوصفة
-</button>
-</div>
-</div>
-</div>
-</div>
-<!-- ESPRESSO -->
-<div id="espressoPage" class="page">
-<div class="simple-title">إسبريسو</div>
-<div class="card">
-<div class="amount-row">
-<div class="amount-label">جرعة البن</div>
-<div class="amount-value">
-<span id="espressoCoffeeValue">18</span>
-<small>جرام</small>
-</div>
-</div>
-<input
-id="espressoSlider"
-type="range"
-min="7"
-max="25"
-value="18"
-oninput="updateEspressoDose(this.value)"
->
-</div>
-<div class="card">
-<div class="card-title">
-نسبة الاستخلاص
-</div>
-<div class="choice-grid">
-<button onclick="setEspressoRatio(1.5,this)">1:1.5</button>
-<button class="active" onclick="setEspressoRatio(2,this)">1:2</button>
-<button onclick="setEspressoRatio(2.5,this)">1:2.5</button>
-</div>
-</div>
-<div class="card">
-<div class="card-title">
-الحرارة
-</div>
-<input
-id="espressoTempSlider"
-type="range"
-min="85"
-max="95"
-value="92"
-oninput="updateEspressoTempSlider(this.value)"
->
-<div class="strength-labels">
-<span>85°</span>
-<span class="strength-center" id="espressoTempValue">92°C</span>
-<span>95°</span>
-</div>
-</div>
-<div class="card">
-<div class="card-title">
-ضغط الاستخلاص
-</div>
-<div class="choice-grid">
-<button onclick="setPressure(6,this)">6 bar</button>
-<button class="active" onclick="setPressure(9,this)">9 bar</button>
-<button onclick="setPressure(10,this)">10 bar</button>
-</div>
-</div>
-<div class="card">
-<div class="card-title">
-Pre-infusion
-</div>
-<div class="choice-grid">
-<button onclick="setPreinfusion(0,this)">بدون</button>
-<button class="active" onclick="setPreinfusion(5,this)">5 ثواني</button>
-<button onclick="setPreinfusion(10,this)">10 ثواني</button>
-</div>
-</div>
-<div class="card">
-<div class="card-title">
-الطحن
-</div>
-<input
-id="espressoGrind"
-type="range"
-min="1"
-max="20"
-value="10"
-oninput="updateEspressoGrind(this.value)"
->
-<div class="strength-labels">
-<span>أنعم</span>
-<span class="strength-center" id="espressoGrindValue">متوسط</span>
-<span>أخشن</span>
-</div>
-</div>
-<div class="card">
-<div class="card-title">
-تفاصيل الوصفة
-</div>
-<div class="prof-grid">
-<div class="prof-box">
-<div class="prof-label">الجرعة</div>
-<div class="prof-value" id="espressoDoseDetail">18g</div>
-</div>
-<div class="prof-box">
-<div class="prof-label">الناتج</div>
-<div class="prof-value" id="espressoOutput">36g</div>
-</div>
-<div class="prof-box">
-<div class="prof-label">الوقت</div>
-<div class="prof-value">25–32s</div>
-</div>
-<div class="prof-box">
-<div class="prof-label">الضغط</div>
-<div class="prof-value" id="espressoPressure">9 bar</div>
-</div>
-</div>
-<div class="note">
-إذا كان الإسبريسو يخرج بسرعة، اجعل الطحن أنعم.
-إذا كان يخرج ببطء شديد، اجعله أخشن.
-</div>
-</div>
-<button class="calculate" onclick="calculateEspresso()">
-احسب وصفة الإسبريسو
-</button>
-<div id="espressoResult" class="result">
-<div class="card">
-<div class="water-card">
-<div>
-<div class="water-label">الجرعة</div>
-<div class="water-number" id="finalDose">18g</div>
-</div>
-<div>
-<div class="water-label">الناتج</div>
-<div class="water-number" id="finalOutput">36g</div>
-</div>
-</div>
-<div class="note">
-ابدأ المؤقت مع بداية الاستخلاص وأوقفه عند الوصول إلى الناتج المستهدف.
-</div>
-</div>
-</div>
-</div>
-<!-- المحاصيل -->
-<div id="cropsPage" class="page">
-<div class="simple-title">المحاصيل</div>
-<div class="crop">
-<strong>اليمن</strong>
-<p>حلاوة واضحة، فواكه وتوابل. مناسب لمن يحب القهوة المعقدة والغنية.</p>
-</div>
-<div class="crop">
-<strong>إثيوبيا</strong>
-<p>فاكهية وزهرية وحمضية بشكل لطيف. ممتازة لمحبي القهوة الخفيفة والعطرية.</p>
-</div>
-<div class="crop">
-<strong>كولومبيا</strong>
-<p>متوازنة وسهلة، فيها حلاوة وفاكهة وشوكولاتة حسب المنطقة والمعالجة.</p>
-</div>
-<div class="crop">
-<strong>البرازيل</strong>
-<p>شوكولاتة ومكسرات وكراميل وقوام واضح. خيار ممتاز للإسبريسو.</p>
-</div>
-<div class="crop">
-<strong>كينيا</strong>
-<p>فاكهية وحموضة واضحة ونكهات توت وفواكه.</p>
-</div>
-<div class="crop">
-<strong>كوستاريكا</strong>
-<p>نظيفة وحلوة وفاكهية، وتختلف كثيرًا حسب طريقة المعالجة.</p>
-</div>
-<div class="crop">
-<strong>غواتيمالا</strong>
-<p>شوكولاتة وكراميل وفاكهة مع قوام جيد.</p>
-</div>
-<div class="crop">
-<strong>بنما</strong>
-<p>عطرية وفاكهية جدًا، مناسبة لمن يبحث عن نكهات واضحة ومميزة.</p>
-</div>
-<div class="card">
-<div class="card-title">
-كيف تختار البن بسرعة؟
-</div>
-<div class="section-text">
-إذا تحب <b>الحلاوة والشوكولاتة</b>:
-جرّب البرازيل أو كولومبيا.
-<br><br>
-إذا تحب <b>الفواكه والروائح الزهرية</b>:
-جرّب إثيوبيا أو كينيا.
-<br><br>
-إذا تحب <b>نكهة قوية ومعقدة</b>:
-جرّب اليمن.
-<br><br>
-إذا تبي <b>خيارًا متوازنًا وسهلًا</b>:
-ابدأ بكولومبيا.
-</div>
-</div>
-</div>
-<!-- ذوقي -->
-<div id="tastePage" class="page">
-<div class="simple-title">ذوقي</div>
-<div class="card">
-<div class="taste-question">
-وش النكهة اللي تحبها أكثر؟
-</div>
-<div class="taste-options">
-<button onclick="chooseTaste('sweet',this)">حلوة</button>
-<button onclick="chooseTaste('fruity',this)">فاكهية</button>
-<button onclick="chooseTaste('chocolate',this)">شوكولاتة</button>
-<button onclick="chooseTaste('nutty',this)">مكسرات</button>
-<button onclick="chooseTaste('floral',this)">زهرية</button>
-<button onclick="chooseTaste('strong',this)">قوية</button>
-</div>
-</div>
-<div id="tasteResult" class="taste-result">
-<div class="card">
-<div class="recommendation">
-<div class="recommendation-title">
-البن الأنسب لذوقك
-</div>
-<div class="recommendation-bean" id="recommendedBean">
-كولومبيا
-</div>
-<div class="section-text" id="tasteDescription">
-</div>
-</div>
-<div class="recommendation">
-<div class="recommendation-title">
-الوصفة المقترحة
-</div>
-<div class="prof-grid">
-<div class="prof-box">
-<div class="prof-label">الطريقة</div>
-<div class="prof-value">V60</div>
-</div>
-<div class="prof-box">
-<div class="prof-label">البن</div>
-<div class="prof-value" id="tasteCoffee">20g</div>
-</div>
-<div class="prof-box">
-<div class="prof-label">الماء</div>
-<div class="prof-value" id="tasteWater">300g</div>
-</div>
-<div class="prof-box">
-<div class="prof-label">الحرارة</div>
-<div class="prof-value" id="tasteTemp">90°C</div>
-</div>
-</div>
-</div>
-<button class="calculate" onclick="goToTasteRecipe()">
-استخدم هذه الوصفة
-</button>
-</div>
-</div>
-</div>
-<!-- وصفاتي -->
-<div id="recipesPage" class="page">
-<div class="simple-title">وصفاتي</div>
-<div id="savedRecipes" class="empty">
-ما عندك وصفات محفوظة حاليًا
-</div>
-</div>
-</div>
-<!-- التنقل -->
+
+
+<!-- =========================
+     V60
+========================= -->
+
+<section id="v60Page" class="page active">
+
+  <div class="mode">
+
+    <button id="hotBtn" onclick="setMode('hot')">
+      <span class="mode-symbol">🔥</span>
+      حار
+    </button>
+
+    <button id="coldBtn" class="active" onclick="setMode('cold')">
+      <span class="mode-symbol">❄️</span>
+      بارد
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="amount-row">
+
+      <div class="amount-label">
+        كمية البن
+      </div>
+
+      <div class="amount-value">
+        <span id="coffeeValue">20</span>
+        <small>جرام</small>
+      </div>
+
+    </div>
+
+    <div class="amount-controls">
+
+      <button class="round-btn" onclick="changeCoffee(-1)">
+        −
+      </button>
+
+      <div style="flex:1">
+        <input
+          id="coffeeSlider"
+          type="range"
+          min="10"
+          max="40"
+          value="20"
+          oninput="updateCoffee(this.value)"
+        >
+      </div>
+
+      <button class="round-btn" onclick="changeCoffee(1)">
+        +
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      <span>درجة حرارة الماء</span>
+      <span id="temperatureValue">90°C</span>
+    </div>
+
+    <input
+      id="temperatureSlider"
+      type="range"
+      min="80"
+      max="95"
+      value="90"
+      oninput="updateTemperature(this.value)"
+    >
+
+    <div class="strength-labels">
+      <span>80°</span>
+      <span class="strength-center">الحرارة</span>
+      <span>95°</span>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      <span>قوة القهوة</span>
+      <span id="strengthWord" style="color:var(--accent-dark)">
+        متوازنة
+      </span>
+    </div>
+
+    <input
+      id="strengthSlider"
+      type="range"
+      min="12"
+      max="18"
+      step=".5"
+      value="15"
+      oninput="updateStrength(this.value)"
+    >
+
+    <div class="strength-labels">
+      <span>أخف</span>
+      <span class="strength-center" id="strengthValue">15</span>
+      <span>أثقل</span>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      عدد الصبات
+    </div>
+
+    <div class="pour-count">
+
+      <button onclick="setPours(5)">5</button>
+      <button onclick="setPours(4)">4</button>
+      <button class="active" onclick="setPours(3)">3</button>
+      <button onclick="setPours(2)">2</button>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      درجة التحميص
+    </div>
+
+    <div class="roast-buttons">
+
+      <button onclick="setRoast('light',this)">
+        فاتح
+      </button>
+
+      <button class="active" onclick="setRoast('medium',this)">
+        متوسط
+      </button>
+
+      <button onclick="setRoast('dark',this)">
+        غامق
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      حجم حبة البن
+    </div>
+
+    <div class="choice-grid">
+
+      <button class="active" onclick="setBean('small',this)">
+        صغيرة
+      </button>
+
+      <button onclick="setBean('medium',this)">
+        متوسطة
+      </button>
+
+      <button onclick="setBean('large',this)">
+        كبيرة
+      </button>
+
+    </div>
+
+    <div class="note" id="beanAdvice">
+      اختر حجم الحبة وسيستخدمه وَزن مع بقية البيانات لتحديد نقطة بداية الطحن.
+    </div>
+
+  </div>
+
+
+  <button class="calculate" onclick="calculateRecipe()">
+    احسب الوصفة
+  </button>
+
+
+  <div id="result" class="result">
+
+    <div class="card">
+
+      <div class="water-card">
+
+        <div>
+          <div class="water-label">الماء</div>
+          <div class="water-number" id="hotWater">150g</div>
+        </div>
+
+        <div id="iceBlock">
+          <div class="water-label">الثلج</div>
+          <div class="water-number" id="iceWater">150g</div>
+        </div>
+
+      </div>
+
+
+      <div class="info-grid">
+
+        <div class="info-box">
+          <div class="info-label">الحرارة</div>
+          <div class="info-value" id="resultTemperature">90°</div>
+        </div>
+
+        <div class="info-box">
+          <div class="info-label">الطحن</div>
+          <div class="info-value" id="grind">متوسط</div>
+        </div>
+
+        <div class="info-box">
+          <div class="info-label">الوقت</div>
+          <div class="info-value" id="targetTime">2:00</div>
+        </div>
+
+      </div>
+
+
+      <div class="prof-grid">
+
+        <div class="prof-box">
+          <div class="prof-label">النسبة</div>
+          <div class="prof-value" id="ratio">1:15</div>
+        </div>
+
+        <div class="prof-box">
+          <div class="prof-label">حجم الحبة</div>
+          <div class="prof-value" id="density">صغيرة</div>
+        </div>
+
+        <div class="prof-box">
+          <div class="prof-label">تعديل الطحن</div>
+          <div class="prof-value" id="grindAdvice">
+            متوسط
+          </div>
+        </div>
+
+        <div class="prof-box">
+          <div class="prof-label">التحميص</div>
+          <div class="prof-value" id="roastResult">
+            متوسط
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="note">
+        إذا كان النزول سريعًا والطعم حامضًا، جرّب طحنًا أنعم.
+        إذا كان النزول بطيئًا والطعم مرًا أو جافًا، جرّب طحنًا أخشن.
+      </div>
+
+    </div>
+
+
+    <div class="pours-card">
+
+      <div class="pours-head">
+        <div class="pours-title">الصبات</div>
+        <div class="pours-sub">الوزن التراكمي</div>
+      </div>
+
+      <div id="poursList"></div>
+
+
+      <div class="timer-box">
+
+        <div class="timer" id="timer">
+          0:00
+        </div>
+
+        <div class="timer-message" id="timerMessage">
+          جاهز للبدء
+        </div>
+
+        <div class="timer-buttons">
+
+          <button
+            class="timer-btn start"
+            id="startBtn"
+            onclick="toggleTimer()"
+          >
+            بدء المؤقت
+          </button>
+
+          <button
+            class="timer-btn reset"
+            onclick="resetTimer()"
+          >
+            إعادة
+          </button>
+
+        </div>
+
+
+        <button
+          class="timer-btn save"
+          onclick="saveRecipe()"
+        >
+          حفظ الوصفة
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ESPRESSO
+========================= -->
+
+<section id="espressoPage" class="page">
+
+  <div class="simple-title">
+    إسبريسو
+  </div>
+
+
+  <div class="card">
+
+    <div class="amount-row">
+
+      <div class="amount-label">
+        جرعة البن
+      </div>
+
+      <div class="amount-value">
+        <span id="espressoCoffeeValue">18</span>
+        <small>جرام</small>
+      </div>
+
+    </div>
+
+    <input
+      id="espressoSlider"
+      type="range"
+      min="7"
+      max="25"
+      value="18"
+      oninput="updateEspressoDose(this.value)"
+    >
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      نسبة الاستخلاص
+    </div>
+
+    <div class="espresso-option">
+
+      <button onclick="setEspressoRatio(1.5,this)">
+        1:1.5
+      </button>
+
+      <button class="active" onclick="setEspressoRatio(2,this)">
+        1:2
+      </button>
+
+      <button onclick="setEspressoRatio(2.5,this)">
+        1:2.5
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      درجة الحرارة
+      <span id="espressoTempValue">92°C</span>
+    </div>
+
+    <input
+      id="espressoTempSlider"
+      type="range"
+      min="85"
+      max="95"
+      value="92"
+      oninput="updateEspressoTemp(this.value)"
+    >
+
+    <div class="strength-labels">
+      <span>85°</span>
+      <span>الحرارة</span>
+      <span>95°</span>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      الضغط
+    </div>
+
+    <div class="espresso-option">
+
+      <button onclick="setPressure(6,this)">
+        6 bar
+      </button>
+
+      <button class="active" onclick="setPressure(9,this)">
+        9 bar
+      </button>
+
+      <button onclick="setPressure(10,this)">
+        10 bar
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      Pre-infusion
+    </div>
+
+    <div class="espresso-option">
+
+      <button onclick="setPreinfusion(0,this)">
+        بدون
+      </button>
+
+      <button class="active" onclick="setPreinfusion(5,this)">
+        5 ثواني
+      </button>
+
+      <button onclick="setPreinfusion(10,this)">
+        10 ثواني
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      الطحن
+    </div>
+
+    <input
+      id="espressoGrind"
+      type="range"
+      min="1"
+      max="20"
+      value="10"
+      oninput="updateEspressoGrind(this.value)"
+    >
+
+    <div class="strength-labels">
+      <span>أنعم</span>
+      <span class="strength-center" id="espressoGrindValue">
+        متوسط
+      </span>
+      <span>أخشن</span>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      تفاصيل الوصفة
+    </div>
+
+    <div class="prof-grid">
+
+      <div class="prof-box">
+        <div class="prof-label">الجرعة</div>
+        <div class="prof-value" id="espressoDoseDetail">
+          18g
+        </div>
+      </div>
+
+      <div class="prof-box">
+        <div class="prof-label">الناتج</div>
+        <div class="prof-value" id="espressoOutput">
+          36g
+        </div>
+      </div>
+
+      <div class="prof-box">
+        <div class="prof-label">الوقت</div>
+        <div class="prof-value">25–32s</div>
+      </div>
+
+      <div class="prof-box">
+        <div class="prof-label">الضغط</div>
+        <div class="prof-value" id="espressoPressure">
+          9 bar
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <button class="calculate" onclick="calculateEspresso()">
+    احسب وصفة الإسبريسو
+  </button>
+
+
+  <div id="espressoResult" class="espresso-result">
+
+    <div class="card">
+
+      <div class="water-card">
+
+        <div>
+          <div class="water-label">الجرعة</div>
+          <div class="water-number" id="finalDose">
+            18g
+          </div>
+        </div>
+
+        <div>
+          <div class="water-label">الناتج</div>
+          <div class="water-number" id="finalOutput">
+            36g
+          </div>
+        </div>
+
+      </div>
+
+      <div class="note">
+        ابدأ المؤقت مع بداية الاستخلاص وأوقفه عند الوصول للناتج المستهدف.
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CROPS
+========================= -->
+
+<section id="cropsPage" class="page">
+
+  <div class="simple-title">
+    المحاصيل
+  </div>
+
+
+  <div class="crop-tabs">
+
+    <button
+      class="crop-tab active"
+      onclick="showCropTab('countries',this)"
+    >
+      البلدان
+    </button>
+
+    <button
+      class="crop-tab"
+      onclick="showCropTab('journey',this)"
+    >
+      خطوات البن
+    </button>
+
+  </div>
+
+
+  <!-- البلدان -->
+
+  <div id="countriesTab" class="crop-content active">
+
+    <div class="crop">
+      <div class="crop-name">
+        <span>🇪🇹</span>
+        <strong>إثيوبيا</strong>
+      </div>
+      <p>
+        فاكهية وزهرية وعطرية، مع حموضة منعشة ونكهات واضحة.
+      </p>
+    </div>
+
+
+    <div class="crop">
+      <div class="crop-name">
+        <span>🇨🇴</span>
+        <strong>كولومبيا</strong>
+      </div>
+      <p>
+        متوازنة وحلوة، وقد تظهر فيها الكراميل والشوكولاتة والفاكهة.
+      </p>
+    </div>
+
+
+    <div class="crop">
+      <div class="crop-name">
+        <span>🇧🇷</span>
+        <strong>البرازيل</strong>
+      </div>
+      <p>
+        شوكولاتة ومكسرات وكراميل وقوام واضح، ومناسبة جدًا للإسبريسو.
+      </p>
+    </div>
+
+
+    <div class="crop">
+      <div class="crop-name">
+        <span>🇾🇪</span>
+        <strong>اليمن</strong>
+      </div>
+      <p>
+        شخصية قوية ومعقدة، مع فواكه وتوابل وحلاوة مميزة.
+      </p>
+    </div>
+
+
+    <div class="crop">
+      <div class="crop-name">
+        <span>🇰🇪</span>
+        <strong>كينيا</strong>
+      </div>
+      <p>
+        فاكهية وحموضتها واضحة، وقد تظهر نكهات التوت والفواكه الحمراء.
+      </p>
+    </div>
+
+
+    <div class="crop">
+      <div class="crop-name">
+        <span>🇨🇷</span>
+        <strong>كوستاريكا</strong>
+      </div>
+      <p>
+        نظيفة وحلوة وفاكهية، وتختلف حسب المنطقة وطريقة المعالجة.
+      </p>
+    </div>
+
+
+    <div class="crop">
+      <div class="crop-name">
+        <span>🇬🇹</span>
+        <strong>غواتيمالا</strong>
+      </div>
+      <p>
+        شوكولاتة وكراميل وفاكهة مع قوام متوازن.
+      </p>
+    </div>
+
+
+    <div class="crop">
+      <div class="crop-name">
+        <span>🇵🇦</span>
+        <strong>بنما</strong>
+      </div>
+      <p>
+        عطرية وفاكهية ومناسبة لمحبي النكهات الواضحة والمميزة.
+      </p>
+    </div>
+
+  </div>
+
+
+  <!-- خطوات البن -->
+
+  <div id="journeyTab" class="crop-content">
+
+    <div class="journey-intro">
+
+      <div class="journey-title">
+        رحلة البن
+      </div>
+
+      <div class="journey-subtitle">
+        من الثمرة إلى الحبة المحمصة
+      </div>
+
+    </div>
+
+
+    <div class="coffee-step">
+
+      <img
+        src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1000&q=85"
+        alt="حصاد القهوة"
+      >
+
+      <div class="step-number">1</div>
+
+      <div class="step-body">
+
+        <h3>الحصاد</h3>
+
+        <p>
+          تبدأ الرحلة بقطف حبات القهوة الناضجة من شجرة البن.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="coffee-step">
+
+      <img
+        src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=85"
+        alt="فرز القهوة"
+      >
+
+      <div class="step-number">2</div>
+
+      <div class="step-body">
+
+        <h3>الفرز</h3>
+
+        <p>
+          يتم اختيار الحبات الجيدة واستبعاد الحبات غير الناضجة أو التالفة.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="coffee-step">
+
+      <img
+        src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1000&q=85"
+        alt="معالجة القهوة"
+      >
+
+      <div class="step-number">3</div>
+
+      <div class="step-body">
+
+        <h3>المعالجة</h3>
+
+        <p>
+          تُزال طبقات الثمرة عن الحبة باستخدام طريقة المعالجة المناسبة.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="coffee-step">
+
+      <img
+        src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1000&q=85"
+        alt="تجفيف القهوة"
+      >
+
+      <div class="step-number">4</div>
+
+      <div class="step-body">
+
+        <h3>التجفيف</h3>
+
+        <p>
+          تُجفف الحبوب بعناية حتى تصل إلى مستوى الرطوبة المناسب.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="coffee-step">
+
+      <img
+        src="https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=1000&q=85"
+        alt="تقشير وفرز القهوة"
+      >
+
+      <div class="step-number">5</div>
+
+      <div class="step-body">
+
+        <h3>التقشير والفرز</h3>
+
+        <p>
+          تُزال الطبقات الخارجية المتبقية ثم تُفرز الحبوب حسب الحجم والجودة.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="coffee-step">
+
+      <img
+        src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=1000&q=85"
+        alt="الحبة الخضراء"
+      >
+
+      <div class="step-number">6</div>
+
+      <div class="step-body">
+
+        <h3>الحبة الخضراء</h3>
+
+        <p>
+          تصبح الحبوب خضراء وجاهزة للانتقال إلى مرحلة التحميص.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="coffee-step">
+
+      <img
+        src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1000&q=85"
+        alt="تحميص القهوة"
+      >
+
+      <div class="step-number">7</div>
+
+      <div class="step-body">
+
+        <h3>التحميص</h3>
+
+        <p>
+          تتعرض الحبوب للحرارة لتتطور نكهاتها ورائحتها ولونها.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="coffee-step">
+
+      <img
+        src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=1000&q=85"
+        alt="الحبوب المحمصة"
+      >
+
+      <div class="step-number">8</div>
+
+      <div class="step-body">
+
+        <h3>الحبة المحمصة</h3>
+
+        <p>
+          أصبحت الحبوب جاهزة للطحن والتحضير واستخراج القهوة.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     TASTE
+========================= -->
+
+<section id="tastePage" class="page">
+
+  <div class="simple-title">
+    ذوقي
+  </div>
+
+
+  <div class="card">
+
+    <div class="taste-question">
+      وش النكهة اللي تحبها أكثر؟
+    </div>
+
+    <div class="taste-options">
+
+      <button onclick="chooseTaste('sweet',this)">
+        حلاوة
+      </button>
+
+      <button onclick="chooseTaste('fruity',this)">
+        فاكهية
+      </button>
+
+      <button onclick="chooseTaste('floral',this)">
+        زهرية
+      </button>
+
+      <button onclick="chooseTaste('chocolate',this)">
+        شوكولاتة
+      </button>
+
+      <button onclick="chooseTaste('nutty',this)">
+        مكسرات
+      </button>
+
+      <button onclick="chooseTaste('acidic',this)">
+        حموضة
+      </button>
+
+      <button onclick="chooseTaste('bitter',this)">
+        مرارة
+      </button>
+
+      <button onclick="chooseTaste('strong',this)">
+        قوة
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div id="tasteResult" class="taste-result">
+
+    <div class="card">
+
+      <div class="recommendation">
+
+        <div class="recommendation-title">
+          البن الأنسب لذوقك
+        </div>
+
+        <div
+          class="recommendation-bean"
+          id="recommendedBean"
+        >
+          كولومبيا
+        </div>
+
+        <div
+          class="section-text"
+          id="tasteDescription"
+        ></div>
+
+      </div>
+
+
+      <div class="recommendation">
+
+        <div class="recommendation-title">
+          الوصفة المقترحة
+        </div>
+
+        <div class="prof-grid">
+
+          <div class="prof-box">
+            <div class="prof-label">الطريقة</div>
+            <div class="prof-value">V60</div>
+          </div>
+
+          <div class="prof-box">
+            <div class="prof-label">البن</div>
+            <div
+              class="prof-value"
+              id="tasteCoffee"
+            >
+              20g
+            </div>
+          </div>
+
+          <div class="prof-box">
+            <div class="prof-label">الماء</div>
+            <div
+              class="prof-value"
+              id="tasteWater"
+            >
+              300g
+            </div>
+          </div>
+
+          <div class="prof-box">
+            <div class="prof-label">الحرارة</div>
+            <div
+              class="prof-value"
+              id="tasteTemp"
+            >
+              90°C
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="calculate"
+        onclick="useTasteRecipe()"
+      >
+        استخدم هذه الوصفة
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     RECIPES
+========================= -->
+
+<section id="recipesPage" class="page">
+
+  <div class="simple-title">
+    وصفاتي
+  </div>
+
+  <div id="savedRecipes" class="empty">
+    ما عندك وصفات محفوظة حاليًا
+  </div>
+
+</section>
+
+</div>
+
+
+<!-- =========================
+     NAV
+========================= -->
+
 <nav class="bottom-nav">
-<button class="nav-btn active" onclick="showPage('v60Page',this)">
-V60
-</button>
-<button class="nav-btn" onclick="showPage('espressoPage',this)">
-إسبريسو
-</button>
-<button class="nav-btn" onclick="showPage('cropsPage',this)">
-المحاصيل
-</button>
-<button class="nav-btn" onclick="showPage('tastePage',this)">
-ذوقي
-</button>
-<button class="nav-btn" onclick="showPage('recipesPage',this)">
-وصفاتي
-</button>
+
+  <button
+    class="nav-btn active"
+    onclick="showPage('v60Page',this)"
+  >
+    V60
+  </button>
+
+  <button
+    class="nav-btn"
+    onclick="showPage('espressoPage',this)"
+  >
+    إسبريسو
+  </button>
+
+  <button
+    class="nav-btn"
+    onclick="showPage('cropsPage',this)"
+  >
+    المحاصيل
+  </button>
+
+  <button
+    class="nav-btn"
+    onclick="showPage('tastePage',this)"
+  >
+    ذوقي
+  </button>
+
+  <button
+    class="nav-btn"
+    onclick="showPage('recipesPage',this)"
+  >
+    وصفاتي
+  </button>
+
 </nav>
+
+
 <script>
+
+/* =========================
+   VARIABLES
+========================= */
+
 let mode="cold";
 let coffee=20;
 let strength=15;
@@ -1028,588 +2047,1215 @@ let pours=3;
 let roast="medium";
 let bean="small";
 let temperature=90;
+
 let timerInterval=null;
 let timerSeconds=0;
 let timerRunning=false;
 let currentPour=0;
 let pourSchedule=[];
+
 let audioContext=null;
+
 let espressoRatio=2;
 let espressoPressure=9;
 let espressoPre=5;
 let espressoDose=18;
+
 let selectedTaste=null;
-/* سلايدر */
+
+
+/* =========================
+   SLIDER COLOR
+========================= */
+
 function updateSliderVisual(el){
- let min=+el.min;
- let max=+el.max;
- let value=+el.value;
- let percent=((value-min)/(max-min))*100;
- let hue=35-(percent*.12);
- let color=`hsl(${hue},55%,55%)`;
- el.style.setProperty("--progress",percent+"%");
- el.style.setProperty("--slider-color",color);
+
+  if(!el) return;
+
+  const min=Number(el.min);
+  const max=Number(el.max);
+  const value=Number(el.value);
+
+  const percent=((value-min)/(max-min))*100;
+
+  /*
+    اللون يتحرك مع السلايدر
+    من بني هادئ إلى نحاسي أفتح
+  */
+
+  const lightness=46+(percent*.10);
+
+  const color=`hsl(27,52%,${lightness}%)`;
+
+  el.style.setProperty(
+    "--progress",
+    percent+"%"
+  );
+
+  el.style.setProperty(
+    "--slider-color",
+    color
+  );
 }
-/* تحديث كل السلايدرات */
+
 function refreshSliders(){
- document.querySelectorAll('input[type="range"]').forEach(updateSliderVisual);
+
+  document
+    .querySelectorAll('input[type="range"]')
+    .forEach(updateSliderVisual);
+
 }
-/* الوضع */
-function setMode(v){
- mode=v;
- document.getElementById("hotBtn").classList.toggle("active",v==="hot");
- document.getElementById("coldBtn").classList.toggle("active",v==="cold");
- if(document.getElementById("result").classList.contains("show")){
-  calculateRecipe();
- }
-}
-/* البن */
-function updateCoffee(v){
- coffee=+v;
- document.getElementById("coffeeValue").textContent=coffee;
- updateSliderVisual(document.getElementById("coffeeSlider"));
-}
-function changeCoffee(d){
- coffee=Math.max(
- 10,
- Math.min(40,coffee+d)
- );
- document.getElementById("coffeeSlider").value=coffee;
- updateCoffee(coffee);
-}
-/* الحرارة */
-function updateTemperature(v){
- temperature=+v;
- document.getElementById("temperatureValue").textContent=temperature+"°C";
- updateSliderVisual(document.getElementById("temperatureSlider"));
- if(document.getElementById("result").classList.contains("show")){
-  calculateRecipe();
- }
-}
-/* القوة */
-function updateStrength(v){
- strength=+v;
- document.getElementById("strengthValue").textContent=strength;
- document.getElementById("strengthWord").textContent=
- strength<14.5?"أقخف":
- strength>15.5?"أثقل":
- "متوازنة";
- updateSliderVisual(document.getElementById("strengthSlider"));
-}
-/* الصبات */
-function setPours(v){
- pours=v;
- document
- .querySelectorAll(".pour-count button")
- .forEach(b=>{
-  b.classList.toggle("active",+b.textContent===v);
- });
-}
-/* التحميص */
-function setRoast(v,b){
- roast=v;
- document
- .querySelectorAll(".roast-buttons button")
- .forEach(x=>x.classList.remove("active"));
- b.classList.add("active");
-}
-/* حجم الحبة */
-function setBean(v,b){
- bean=v;
- document
- .querySelectorAll(".card .choice-grid button")
- .forEach(x=>{
-  if(
-   x.textContent==="صغيرة" ||
-   x.textContent==="متوسطة" ||
-   x.textContent==="كبيرة"
-  ){
-   x.classList.remove("active");
+
+
+/* =========================
+   PAGE SWITCH
+========================= */
+
+function showPage(id,button){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(page=>{
+      page.classList.remove("active");
+    });
+
+  const target=document.getElementById(id);
+
+  target.classList.add("active");
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
+
+  if(button){
+    button.classList.add("active");
   }
- });
- b.classList.add("active");
- let text={
- small:"الحبة الصغيرة: ابدأ بطحن متوسط ناعم قليلًا، ثم عدّل حسب سرعة النزول والطعم.",
- medium:"الحبة المتوسطة: ابدأ بطحن متوسط، وهو نقطة بداية مناسبة لمعظم الوصفات.",
- large:"الحبة الكبيرة: ابدأ بطحن متوسط، ولا تغيّر الطحن بسبب الحجم وحده إلا بعد ملاحظة الاستخلاص."
- };
- document.getElementById("beanAdvice").textContent=text[v];
-}
-/* حساب V60 */
-function calculateRecipe(){
- let total=Math.round(coffee*strength);
- let hot=
- mode==="cold"
- ?Math.round(total*.5)
- :total;
- let ice=
- mode==="cold"
- ?total-hot
- :0;
- let grind=
- roast==="light"
- ?"متوسط ناعم":
- roast==="dark"
- ?"متوسط خشن":
- bean==="small"
- ?"متوسط ناعم":
- "متوسط";
- let time=
- mode==="cold"
- ?"2:00":
- "2:30";
- document.getElementById("hotWater").textContent=hot+"g";
- document.getElementById("iceWater").textContent=ice+"g";
- document.getElementById("iceBlock").style.display=
- mode==="cold"?"block":"none";
- document.getElementById("resultTemperature").textContent=
- temperature+"°";
- document.getElementById("grind").textContent=grind;
- document.getElementById("targetTime").textContent=time;
- document.getElementById("ratio").textContent=
- "1:"+strength;
- document.getElementById("density").textContent=
- bean==="small"?"صغيرة":
- bean==="large"?"كبيرة":
- "متوسطة";
- document.getElementById("grindAdvice").textContent=
- bean==="small"
- ?"أنعم قليلًا":
- bean==="large"
- ?"متوسط كبداية":
- "متوسط";
- document.getElementById("roastResult").textContent=
- roast==="light"?"فاتح":
- roast==="dark"?"غامق":
- "متوسط";
- createPours(hot);
- document.getElementById("result").classList.add("show");
- resetTimer();
-}
-/* الصبات */
-function createPours(water){
- let times=
- pours===2
- ?[0,45]
- :pours===3
- ?[0,30,60]
- :pours===4
- ?[0,20,40,60]
- :[0,18,36,54,72];
- pourSchedule=[];
- let html="";
- for(let i=0;i<pours;i++){
-  let target=
-  Math.round(
-   water*(i+1)/pours
-  );
-  pourSchedule.push({
-   time:times[i],
-   target,
-   number:i+1
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
   });
-  let m=Math.floor(times[i]/60);
-  let s=String(
-   times[i]%60
-  ).padStart(2,"0");
-  html+=`
-  <div class="pour-item" id="pour-${i}">
-   <div class="pour-number">
-   ${i+1}
-   </div>
-   <div>
-    <div class="pour-time">
-    ابدأ ${m}:${s}
-    </div>
-    <div class="pour-target">
-    صب حتى ${target}g
-    </div>
-   </div>
-   <div class="pour-status"></div>
-  </div>
-  `;
- }
- document.getElementById("poursList").innerHTML=html;
- currentPour=0;
- document
- .getElementById("pour-0")
- ?.classList.add("next");
+
 }
-/* صوت تنبيه */
-function beep(){
- try{
-  audioContext=
-  audioContext ||
-  new(window.AudioContext||window.webkitAudioContext)();
-  audioContext.resume();
-  let oscillator=
-  audioContext.createOscillator();
-  let gain=
-  audioContext.createGain();
-  oscillator.type="sine";
-  oscillator.frequency.value=880;
-  gain.gain.setValueAtTime(
-   .001,
-   audioContext.currentTime
-  );
-  gain.gain.exponentialRampToValueAtTime(
-   .22,
-   audioContext.currentTime+.02
-  );
-  gain.gain.exponentialRampToValueAtTime(
-   .001,
-   audioContext.currentTime+.22
-  );
-  oscillator.connect(gain);
-  gain.connect(audioContext.destination);
-  oscillator.start();
-  oscillator.stop(
-   audioContext.currentTime+.22
-  );
- }catch(e){}
-}
-/* المؤقت */
-function startTimer(){
- if(timerRunning)return;
- timerRunning=true;
- document.getElementById("startBtn").textContent=
- "إيقاف مؤقت";
- beep();
- timerInterval=setInterval(()=>{
-  timerSeconds++;
-  updateTimer();
-  checkAlert();
- },1000);
-}
-function pauseTimer(){
- timerRunning=false;
- clearInterval(timerInterval);
- document.getElementById("startBtn").textContent=
- "متابعة";
-}
-function toggleTimer(){
- if(timerRunning){
-  pauseTimer();
- }else{
-  startTimer();
- }
-}
-function updateTimer(){
- document.getElementById("timer").textContent=
- Math.floor(timerSeconds/60)+":"+
- String(timerSeconds%60).padStart(2,"0");
-}
-function checkAlert(){
- if(currentPour>=pourSchedule.length)return;
- let p=pourSchedule[currentPour];
- if(timerSeconds>=p.time){
-  document.getElementById("timerMessage").textContent=
-  "حان وقت الصبة "+p.number+
-  " — صب حتى "+p.target+"g";
+
+
+/* =========================
+   MODE
+========================= */
+
+function setMode(value){
+
+  mode=value;
+
   document
-  .querySelectorAll(".pour-item")
-  .forEach(x=>x.classList.remove("next"));
+    .getElementById("hotBtn")
+    .classList.toggle(
+      "active",
+      value==="hot"
+    );
+
   document
-  .getElementById("pour-"+currentPour)
-  ?.classList.add("next");
-  beep();
-  currentPour++;
- }
+    .getElementById("coldBtn")
+    .classList.toggle(
+      "active",
+      value==="cold"
+    );
+
 }
-function resetTimer(){
- clearInterval(timerInterval);
- timerRunning=false;
- timerSeconds=0;
- currentPour=0;
- updateTimer();
- document.getElementById("startBtn").textContent=
- "بدء المؤقت";
- document.getElementById("timerMessage").textContent=
- "جاهز للبدء";
- document
- .querySelectorAll(".pour-item")
- .forEach(x=>x.classList.remove("next"));
- document
- .getElementById("pour-0")
- ?.classList.add("next");
+
+
+/* =========================
+   COFFEE
+========================= */
+
+function updateCoffee(value){
+
+  coffee=Number(value);
+
+  document
+    .getElementById("coffeeValue")
+    .textContent=coffee;
+
+  updateSliderVisual(
+    document.getElementById("coffeeSlider")
+  );
+
 }
-/* حفظ */
-function saveRecipe(){
- let recipes=
- JSON.parse(
- localStorage.getItem("waznRecipes")||"[]"
- );
- recipes.unshift({
-  coffee,
-  strength,
-  pours,
-  roast,
-  bean,
-  temperature,
-  mode,
-  date:new Date().toLocaleString("ar-SA")
- });
- localStorage.setItem(
-  "waznRecipes",
-  JSON.stringify(recipes)
- );
- loadRecipes();
- document.getElementById("timerMessage").textContent=
- "تم حفظ الوصفة";
+
+function changeCoffee(change){
+
+  coffee=Math.max(
+    10,
+    Math.min(40,coffee+change)
+  );
+
+  document
+    .getElementById("coffeeSlider")
+    .value=coffee;
+
+  updateCoffee(coffee);
+
 }
-function loadRecipes(){
- let recipes=
- JSON.parse(
- localStorage.getItem("waznRecipes")||"[]"
- );
- let box=
- document.getElementById("savedRecipes");
- if(!recipes.length){
-  box.className="empty";
-  box.textContent=
-  "ما عندك وصفات محفوظة حاليًا";
-  return;
- }
- box.className="";
- box.innerHTML=
- recipes.map((r,i)=>`
- <div class="recipe-item">
- <strong>
- V60 ${r.mode==="cold"?"بارد":"حار"}
- </strong>
- <p>
- ${r.coffee}g بن ·
- ${r.temperature}°C ·
- ${r.pours} صبات
- </p>
- <button
- class="timer-btn reset"
- style="width:100%"
- onclick="deleteRecipe(${i})">
- حذف
- </button>
- </div>
- `).join("");
+
+
+/* =========================
+   TEMPERATURE
+========================= */
+
+function updateTemperature(value){
+
+  temperature=Number(value);
+
+  document
+    .getElementById("temperatureValue")
+    .textContent=
+      temperature+"°C";
+
+  updateSliderVisual(
+    document.getElementById("temperatureSlider")
+  );
+
 }
-function deleteRecipe(i){
- let recipes=
- JSON.parse(
- localStorage.getItem("waznRecipes")||"[]"
- );
- recipes.splice(i,1);
- localStorage.setItem(
-  "waznRecipes",
-  JSON.stringify(recipes)
- );
- loadRecipes();
-}
-/* ESPRESSO */
-function updateEspressoDose(v){
- espressoDose=+v;
- document.getElementById(
-  "espressoCoffeeValue"
- ).textContent=v;
- updateSliderVisual(
-  document.getElementById("espressoSlider")
- );
-}
-function setEspressoRatio(v,b){
- espressoRatio=v;
- document
- .querySelectorAll("#espressoPage .choice-grid button")
- .forEach(x=>{
-  if(
-   x.textContent==="1:1.5"||
-   x.textContent==="1:2"||
-   x.textContent==="1:2.5"
-  ){
-   x.classList.remove("active");
+
+
+/* =========================
+   STRENGTH
+========================= */
+
+function updateStrength(value){
+
+  strength=Number(value);
+
+  document
+    .getElementById("strengthValue")
+    .textContent=strength;
+
+  let word="متوازنة";
+
+  if(strength<14.5){
+    word="أخف";
   }
- });
- b.classList.add("active");
+
+  if(strength>15.5){
+    word="أثقل";
+  }
+
+  document
+    .getElementById("strengthWord")
+    .textContent=word;
+
+  updateSliderVisual(
+    document.getElementById("strengthSlider")
+  );
+
 }
-function updateEspressoTempSlider(v){
- document.getElementById(
-  "espressoTempValue"
- ).textContent=v+"°C";
- updateSliderVisual(
-  document.getElementById("espressoTempSlider")
- );
+
+
+/* =========================
+   POURS
+========================= */
+
+function setPours(value){
+
+  pours=value;
+
+  document
+    .querySelectorAll(".pour-count button")
+    .forEach(button=>{
+      button.classList.toggle(
+        "active",
+        Number(button.textContent)===value
+      );
+    });
+
 }
-function setPressure(v,b){
- espressoPressure=v;
- b.parentElement
- .querySelectorAll("button")
- .forEach(x=>x.classList.remove("active"));
- b.classList.add("active");
+
+
+/* =========================
+   ROAST
+========================= */
+
+function setRoast(value,button){
+
+  roast=value;
+
+  document
+    .querySelectorAll(".roast-buttons button")
+    .forEach(b=>{
+      b.classList.remove("active");
+    });
+
+  button.classList.add("active");
+
 }
-function setPreinfusion(v,b){
- espressoPre=v;
- b.parentElement
- .querySelectorAll("button")
- .forEach(x=>x.classList.remove("active"));
- b.classList.add("active");
+
+
+/* =========================
+   BEAN SIZE
+========================= */
+
+function setBean(value,button){
+
+  bean=value;
+
+  const buttons=
+    document.querySelectorAll(
+      ".choice-grid button"
+    );
+
+  buttons.forEach(b=>{
+
+    if(
+      b.textContent.includes("صغيرة") ||
+      b.textContent.includes("متوسطة") ||
+      b.textContent.includes("كبيرة")
+    ){
+      b.classList.remove("active");
+    }
+
+  });
+
+  button.classList.add("active");
+
+  const advice={
+
+    small:
+      "الحبة الصغيرة: ابدأ بطحن متوسط ناعم قليلًا، ثم عدّل حسب سرعة النزول والطعم.",
+
+    medium:
+      "الحبة المتوسطة: ابدأ بطحن متوسط، وهي نقطة بداية مناسبة لمعظم الوصفات.",
+
+    large:
+      "الحبة الكبيرة: ابدأ بطحن متوسط، ثم عدّل الطحن حسب سرعة الاستخلاص والطعم."
+
+  };
+
+  document
+    .getElementById("beanAdvice")
+    .textContent=advice[value];
+
 }
-function updateEspressoGrind(v){
- let text=
- v<7
- ?"أنعم":
- v>13
- ?"أخشن":
- "متوسط";
- document.getElementById(
-  "espressoGrindValue"
- ).textContent=text;
- updateSliderVisual(
-  document.getElementById("espressoGrind")
- );
+
+
+/* =========================
+   CALCULATE V60
+========================= */
+
+function calculateRecipe(){
+
+  let ratio=strength;
+
+  let totalWater=
+    Math.round(coffee*ratio);
+
+  let hotWater=totalWater;
+  let ice=0;
+
+  if(mode==="cold"){
+
+    hotWater=
+      Math.round(totalWater/2);
+
+    ice=
+      totalWater-hotWater;
+
+  }
+
+  let grind="متوسط";
+
+  if(roast==="light"){
+    grind="متوسط ناعم";
+  }
+
+  if(roast==="dark"){
+    grind="متوسط خشن";
+  }
+
+  if(bean==="small"){
+    grind="متوسط ناعم";
+  }
+
+  if(bean==="large" && roast==="dark"){
+    grind="متوسط";
+  }
+
+  document
+    .getElementById("hotWater")
+    .textContent=
+      hotWater+"g";
+
+  document
+    .getElementById("iceWater")
+    .textContent=
+      ice+"g";
+
+  document
+    .getElementById("iceBlock")
+    .style.display=
+      mode==="cold"
+      ?"block"
+      :"none";
+
+  document
+    .getElementById("resultTemperature")
+    .textContent=
+      temperature+"°";
+
+  document
+    .getElementById("grind")
+    .textContent=
+      grind;
+
+  document
+    .getElementById("ratio")
+    .textContent=
+      "1:"+ratio;
+
+  document
+    .getElementById("density")
+    .textContent=
+      bean==="small"
+      ?"صغيرة"
+      :bean==="large"
+      ?"كبيرة"
+      :"متوسطة";
+
+  document
+    .getElementById("grindAdvice")
+    .textContent=
+      bean==="small"
+      ?"أنعم قليلًا"
+      :bean==="large"
+      ?"متوسط كبداية"
+      :"متوسط";
+
+  document
+    .getElementById("roastResult")
+    .textContent=
+      roast==="light"
+      ?"فاتح"
+      :roast==="dark"
+      ?"غامق"
+      :"متوسط";
+
+  document
+    .getElementById("targetTime")
+    .textContent=
+      mode==="cold"
+      ?"2:00"
+      :"2:30";
+
+  createPours(
+    hotWater,
+    mode==="cold" ? 120 : 150
+  );
+
+  document
+    .getElementById("result")
+    .classList.add("show");
+
+  resetTimer();
+
 }
+
+
+/* =========================
+   POUR SCHEDULE
+========================= */
+
+function createPours(water){
+
+  let times;
+
+  if(pours===2){
+    times=[0,45];
+  }
+
+  else if(pours===3){
+    times=[0,30,60];
+  }
+
+  else if(pours===4){
+    times=[0,20,40,60];
+  }
+
+  else{
+    times=[0,18,36,54,72];
+  }
+
+  pourSchedule=[];
+
+  let html="";
+
+  for(let i=0;i<pours;i++){
+
+    const target=
+      Math.round(
+        water*((i+1)/pours)
+      );
+
+    pourSchedule.push({
+      time:times[i],
+      target:target,
+      number:i+1
+    });
+
+    const minutes=
+      Math.floor(times[i]/60);
+
+    const seconds=
+      String(times[i]%60)
+      .padStart(2,"0");
+
+    html+=`
+
+      <div
+        class="pour-item"
+        id="pour-${i}"
+      >
+
+        <div class="pour-number">
+          ${i+1}
+        </div>
+
+        <div>
+
+          <div class="pour-time">
+            ابدأ ${minutes}:${seconds}
+          </div>
+
+          <div class="pour-target">
+            صب حتى ${target}g
+          </div>
+
+        </div>
+
+        <div></div>
+
+      </div>
+
+    `;
+
+  }
+
+  document
+    .getElementById("poursList")
+    .innerHTML=html;
+
+  currentPour=0;
+
+  document
+    .getElementById("pour-0")
+    ?.classList.add("next");
+
+}
+
+
+/* =========================
+   BEEP
+========================= */
+
+function beep(){
+
+  try{
+
+    audioContext=
+      audioContext ||
+      new(
+        window.AudioContext ||
+        window.webkitAudioContext
+      )();
+
+    audioContext.resume();
+
+    const oscillator=
+      audioContext.createOscillator();
+
+    const gain=
+      audioContext.createGain();
+
+    oscillator.type="sine";
+
+    oscillator.frequency.value=880;
+
+    gain.gain.setValueAtTime(
+      .001,
+      audioContext.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .2,
+      audioContext.currentTime+.02
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .001,
+      audioContext.currentTime+.22
+    );
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start();
+
+    oscillator.stop(
+      audioContext.currentTime+.22
+    );
+
+  }catch(error){}
+
+}
+
+
+/* =========================
+   TIMER
+========================= */
+
+function toggleTimer(){
+
+  if(timerRunning){
+
+    clearInterval(timerInterval);
+
+    timerRunning=false;
+
+    document
+      .getElementById("startBtn")
+      .textContent="متابعة";
+
+    return;
+
+  }
+
+  timerRunning=true;
+
+  document
+    .getElementById("startBtn")
+    .textContent="إيقاف مؤقت";
+
+  beep();
+
+  timerInterval=
+    setInterval(()=>{
+
+      timerSeconds++;
+
+      updateTimer();
+
+      checkPourAlert();
+
+    },1000);
+
+}
+
+
+function updateTimer(){
+
+  const minutes=
+    Math.floor(timerSeconds/60);
+
+  const seconds=
+    String(timerSeconds%60)
+    .padStart(2,"0");
+
+  document
+    .getElementById("timer")
+    .textContent=
+      minutes+":"+seconds;
+
+}
+
+
+function checkPourAlert(){
+
+  if(
+    currentPour>=pourSchedule.length
+  ){
+    return;
+  }
+
+  const pour=
+    pourSchedule[currentPour];
+
+  if(timerSeconds>=pour.time){
+
+    document
+      .getElementById("timerMessage")
+      .textContent=
+        "حان وقت الصبة "+
+        pour.number+
+        " — صب حتى "+
+        pour.target+
+        "g";
+
+    document
+      .querySelectorAll(".pour-item")
+      .forEach(item=>{
+        item.classList.remove("next");
+      });
+
+    document
+      .getElementById(
+        "pour-"+currentPour
+      )
+      ?.classList.add("next");
+
+    beep();
+
+    currentPour++;
+
+  }
+
+}
+
+
+function resetTimer(){
+
+  clearInterval(timerInterval);
+
+  timerRunning=false;
+
+  timerSeconds=0;
+
+  currentPour=0;
+
+  document
+    .getElementById("timer")
+    .textContent="0:00";
+
+  document
+    .getElementById("timerMessage")
+    .textContent=
+      "جاهز للبدء";
+
+  document
+    .getElementById("startBtn")
+    .textContent=
+      "بدء المؤقت";
+
+  document
+    .querySelectorAll(".pour-item")
+    .forEach(item=>{
+      item.classList.remove("next");
+    });
+
+  document
+    .getElementById("pour-0")
+    ?.classList.add("next");
+
+}
+
+
+/* =========================
+   SAVE RECIPES
+========================= */
+
+function saveRecipe(){
+
+  const recipes=
+    JSON.parse(
+      localStorage.getItem("waznRecipes") || "[]"
+    );
+
+  recipes.unshift({
+
+    type:"V60",
+
+    mode:
+      mode==="cold"
+      ?"بارد"
+      :"حار",
+
+    coffee:coffee,
+
+    strength:strength,
+
+    temperature:temperature,
+
+    pours:pours,
+
+    roast:roast,
+
+    bean:bean,
+
+    date:new Date().toLocaleString("ar-SA")
+
+  });
+
+  localStorage.setItem(
+    "waznRecipes",
+    JSON.stringify(recipes)
+  );
+
+  loadRecipes();
+
+  document
+    .getElementById("timerMessage")
+    .textContent=
+      "تم حفظ الوصفة";
+
+}
+
+
+function loadRecipes(){
+
+  const recipes=
+    JSON.parse(
+      localStorage.getItem("waznRecipes") || "[]"
+    );
+
+  const box=
+    document.getElementById("savedRecipes");
+
+  if(!recipes.length){
+
+    box.className="empty";
+
+    box.textContent=
+      "ما عندك وصفات محفوظة حاليًا";
+
+    return;
+
+  }
+
+  box.className="";
+
+  box.innerHTML=
+    recipes.map((recipe,index)=>`
+
+      <div class="recipe-item">
+
+        <strong>
+          ${recipe.type}
+          ${recipe.mode}
+        </strong>
+
+        <p>
+          ${recipe.coffee}g بن ·
+          ${recipe.temperature}°C ·
+          ${recipe.pours} صبات
+        </p>
+
+        <button
+          class="timer-btn reset"
+          style="width:100%"
+          onclick="deleteRecipe(${index})"
+        >
+          حذف
+        </button>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+function deleteRecipe(index){
+
+  const recipes=
+    JSON.parse(
+      localStorage.getItem("waznRecipes") || "[]"
+    );
+
+  recipes.splice(index,1);
+
+  localStorage.setItem(
+    "waznRecipes",
+    JSON.stringify(recipes)
+  );
+
+  loadRecipes();
+
+}
+
+
+/* =========================
+   ESPRESSO
+========================= */
+
+function updateEspressoDose(value){
+
+  espressoDose=Number(value);
+
+  document
+    .getElementById("espressoCoffeeValue")
+    .textContent=espressoDose;
+
+  updateSliderVisual(
+    document.getElementById("espressoSlider")
+  );
+
+}
+
+
+function setEspressoRatio(value,button){
+
+  espressoRatio=value;
+
+  document
+    .querySelectorAll(
+      "#espressoPage .espresso-option button"
+    )
+    .forEach(btn=>{
+
+      if(
+        btn.textContent.includes("1:1.5") ||
+        btn.textContent.includes("1:2") ||
+        btn.textContent.includes("1:2.5")
+      ){
+        btn.classList.remove("active");
+      }
+
+    });
+
+  button.classList.add("active");
+
+}
+
+
+function updateEspressoTemp(value){
+
+  document
+    .getElementById("espressoTempValue")
+    .textContent=
+      value+"°C";
+
+  updateSliderVisual(
+    document.getElementById("espressoTempSlider")
+  );
+
+}
+
+
+function setPressure(value,button){
+
+  espressoPressure=value;
+
+  button
+    .parentElement
+    .querySelectorAll("button")
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
+
+  button.classList.add("active");
+
+}
+
+
+function setPreinfusion(value,button){
+
+  espressoPre=value;
+
+  button
+    .parentElement
+    .querySelectorAll("button")
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
+
+  button.classList.add("active");
+
+}
+
+
+function updateEspressoGrind(value){
+
+  const number=Number(value);
+
+  let word="متوسط";
+
+  if(number<7){
+    word="أنعم";
+  }
+
+  if(number>13){
+    word="أخشن";
+  }
+
+  document
+    .getElementById("espressoGrindValue")
+    .textContent=word;
+
+  updateSliderVisual(
+    document.getElementById("espressoGrind")
+  );
+
+}
+
+
 function calculateEspresso(){
- let output=
- Math.round(
-  espressoDose*espressoRatio
- );
- document.getElementById(
-  "espressoDoseDetail"
- ).textContent=
- espressoDose+"g";
- document.getElementById(
-  "espressoOutput"
- ).textContent=
- output+"g";
- document.getElementById(
-  "espressoPressure"
- ).textContent=
- espressoPressure+" bar";
- document.getElementById(
-  "finalDose"
- ).textContent=
- espressoDose+"g";
- document.getElementById(
-  "finalOutput"
- ).textContent=
- output+"g";
- document.getElementById(
-  "espressoResult"
- ).classList.add("show");
+
+  const output=
+    Math.round(
+      espressoDose*espressoRatio
+    );
+
+  document
+    .getElementById("espressoDoseDetail")
+    .textContent=
+      espressoDose+"g";
+
+  document
+    .getElementById("espressoOutput")
+    .textContent=
+      output+"g";
+
+  document
+    .getElementById("espressoPressure")
+    .textContent=
+      espressoPressure+" bar";
+
+  document
+    .getElementById("finalDose")
+    .textContent=
+      espressoDose+"g";
+
+  document
+    .getElementById("finalOutput")
+    .textContent=
+      output+"g";
+
+  document
+    .getElementById("espressoResult")
+    .classList.add("show");
+
 }
-/* الذوق */
+
+
+/* =========================
+   CROPS TABS
+========================= */
+
+function showCropTab(tab,button){
+
+  document
+    .querySelectorAll(".crop-tab")
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
+
+  button.classList.add("active");
+
+  document
+    .querySelectorAll(".crop-content")
+    .forEach(content=>{
+      content.classList.remove("active");
+    });
+
+  if(tab==="countries"){
+
+    document
+      .getElementById("countriesTab")
+      .classList.add("active");
+
+  }
+
+  if(tab==="journey"){
+
+    document
+      .getElementById("journeyTab")
+      .classList.add("active");
+
+  }
+
+}
+
+
+/* =========================
+   TASTE
+========================= */
+
 const tastes={
- sweet:{
-  bean:"كولومبيا",
-  coffee:20,
-  water:300,
-  temp:90,
-  description:"إذا تحب الحلاوة، كولومبيا خيار ممتاز كبداية؛ غالبًا تعطي توازنًا بين الحلاوة والفاكهة والكاراميل."
- },
- fruity:{
-  bean:"إثيوبيا",
-  coffee:20,
-  water:300,
-  temp:91,
-  description:"إثيوبيا مناسبة لمحبي الفاكهة والروائح الزهرية والحموضة المنعشة."
- },
- chocolate:{
-  bean:"البرازيل",
-  coffee:20,
-  water:300,
-  temp:89,
-  description:"البرازيل خيار ممتاز إذا تحب الشوكولاتة والكراميل والقوام الواضح."
- },
- nutty:{
-  bean:"البرازيل",
-  coffee:20,
-  water:300,
-  temp:89,
-  description:"لنكهات المكسرات والكراميل والقوام المتوازن، ابدأ بالبرازيل."
- },
- floral:{
-  bean:"إثيوبيا",
-  coffee:20,
-  water:300,
-  temp:91,
-  description:"للنوتات الزهرية والعطرية، إثيوبيا من أفضل نقاط البداية."
- },
- strong:{
-  bean:"اليمن",
-  coffee:20,
-  water:280,
-  temp:91,
-  description:"اليمن مناسب لمن يحب شخصية قوية ومعقدة ونكهات فاكهية وتوابل واضحة."
- }
+
+  sweet:{
+    bean:"كولومبيا",
+    coffee:20,
+    water:300,
+    temp:90,
+    description:
+      "مناسبة لمحبي الحلاوة والكراميل والتوازن. كولومبيا نقطة بداية ممتازة."
+  },
+
+  fruity:{
+    bean:"إثيوبيا",
+    coffee:20,
+    water:300,
+    temp:91,
+    description:
+      "مناسبة لمحبي الفواكه والروائح العطرية والحموضة المنعشة."
+  },
+
+  floral:{
+    bean:"إثيوبيا",
+    coffee:20,
+    water:300,
+    temp:91,
+    description:
+      "مناسبة لمحبي الروائح الزهرية والقهوة الخفيفة والعطرية."
+  },
+
+  chocolate:{
+    bean:"البرازيل",
+    coffee:20,
+    water:300,
+    temp:89,
+    description:
+      "مناسبة لمحبي الشوكولاتة والكراميل والقوام الواضح."
+  },
+
+  nutty:{
+    bean:"البرازيل",
+    coffee:20,
+    water:300,
+    temp:89,
+    description:
+      "مناسبة لمحبي المكسرات والتحميص المتوازن والقوام الممتلئ."
+  },
+
+  acidic:{
+    bean:"كينيا",
+    coffee:20,
+    water:300,
+    temp:91,
+    description:
+      "مناسبة لمن يحب الحموضة الواضحة والنكهات الفاكهية المنعشة."
+  },
+
+  bitter:{
+    bean:"البرازيل",
+    coffee:20,
+    water:280,
+    temp:89,
+    description:
+      "إذا كنت تميل للمرارة والنكهات الثقيلة، ابدأ ببن برازيلي بتحميص متوسط إلى غامق."
+  },
+
+  strong:{
+    bean:"اليمن",
+    coffee:20,
+    water:280,
+    temp:91,
+    description:
+      "مناسبة لمن يحب شخصية قوية ومعقدة ونكهات فاكهية وتوابل واضحة."
+  }
+
 };
-function chooseTaste(t,b){
- selectedTaste=t;
- b.parentElement
- .querySelectorAll("button")
- .forEach(x=>x.classList.remove("active"));
- b.classList.add("active");
- let r=tastes[t];
- document.getElementById(
-  "recommendedBean"
- ).textContent=r.bean;
- document.getElementById(
-  "tasteDescription"
- ).textContent=r.description;
- document.getElementById(
-  "tasteCoffee"
- ).textContent=r.coffee+"g";
- document.getElementById(
-  "tasteWater"
- ).textContent=r.water+"g";
- document.getElementById(
-  "tasteTemp"
- ).textContent=r.temp+"°C";
- document
- .getElementById("tasteResult")
- .classList.add("show");
+
+
+function chooseTaste(taste,button){
+
+  selectedTaste=taste;
+
+  button
+    .parentElement
+    .querySelectorAll("button")
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
+
+  button.classList.add("active");
+
+  const result=tastes[taste];
+
+  document
+    .getElementById("recommendedBean")
+    .textContent=
+      result.bean;
+
+  document
+    .getElementById("tasteDescription")
+    .textContent=
+      result.description;
+
+  document
+    .getElementById("tasteCoffee")
+    .textContent=
+      result.coffee+"g";
+
+  document
+    .getElementById("tasteWater")
+    .textContent=
+      result.water+"g";
+
+  document
+    .getElementById("tasteTemp")
+    .textContent=
+      result.temp+"°C";
+
+  document
+    .getElementById("tasteResult")
+    .classList.add("show");
+
 }
-function goToTasteRecipe(){
- if(!selectedTaste)return;
- let r=tastes[selectedTaste];
- coffee=r.coffee;
- temperature=r.temp;
- mode="cold";
- document.getElementById(
-  "coffeeSlider"
- ).value=coffee;
- document.getElementById(
-  "temperatureSlider"
- ).value=temperature;
- updateCoffee(coffee);
- updateTemperature(temperature);
- document.getElementById("coldBtn")
- .classList.add("active");
- document.getElementById("hotBtn")
- .classList.remove("active");
- let v60Button=
- document.querySelector(".nav-btn");
- showPage("v60Page",v60Button);
- calculateRecipe();
+
+
+function useTasteRecipe(){
+
+  if(!selectedTaste){
+    return;
+  }
+
+  const result=
+    tastes[selectedTaste];
+
+  coffee=result.coffee;
+
+  temperature=result.temp;
+
+  mode="cold";
+
+  document
+    .getElementById("coffeeSlider")
+    .value=coffee;
+
+  document
+    .getElementById("temperatureSlider")
+    .value=temperature;
+
+  updateCoffee(coffee);
+
+  updateTemperature(temperature);
+
+  setMode("cold");
+
+  const v60Button=
+    document.querySelector(".nav-btn");
+
+  showPage(
+    "v60Page",
+    v60Button
+  );
+
+  calculateRecipe();
+
 }
-/* الصفحات */
-function showPage(id,b){
- document
- .querySelectorAll(".page")
- .forEach(x=>x.classList.remove("active"));
- document
- .getElementById(id)
- .classList.add("active");
- document
- .querySelectorAll(".nav-btn")
- .forEach(x=>x.classList.remove("active"));
- b.classList.add("active");
- window.scrollTo({
-  top:0,
-  behavior:"smooth"
- });
-}
-/* تشغيل */
+
+
+/* =========================
+   START
+========================= */
+
 updateCoffee(20);
+
 updateStrength(15);
+
 updateTemperature(90);
+
+updateEspressoDose(18);
+
+updateEspressoTemp(92);
+
+updateEspressoGrind(10);
+
 refreshSliders();
+
 loadRecipes();
+
 </script>
+
 </body>
 </html>
